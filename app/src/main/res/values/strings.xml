@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">PetsApp</string>
+    <string name="bienvenida">Bienvenido a PetsApp</string>
+    <string name="llevar_registro">Aquí podrás llevar un registro de tu mascota</string>
 </resources>
