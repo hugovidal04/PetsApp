@@ -19,6 +19,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.petsapp.R
+import com.example.petsapp.presentation.components.NormalText
 import com.example.petsapp.ui.theme.Principal
 
 @Preview
@@ -50,7 +51,7 @@ fun InitialScreen() {
             color = Color.Black, fontWeight = FontWeight.Bold
         )
         Spacer(modifier = Modifier.weight(1f))
-
-        //Todo añadir flecha
+        Arrow()
+        Spacer(modifier = Modifier.weight(1f))
     }
 }
