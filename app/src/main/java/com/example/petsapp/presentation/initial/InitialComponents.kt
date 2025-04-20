@@ -1,39 +1,38 @@
 package com.example.petsapp.presentation.initial
 
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.heightIn
-import androidx.compose.material3.Text
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowForward
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.Icon
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 
 @Composable
-fun NormalText(
-    text: String,
-    fontSize: TextUnit = 48.sp,
-    color: Color = Color.Black,
-    fontWeight: FontWeight = FontWeight.Normal
-) {
-    Text(
+fun Arrow() {
+    Button(
+        onClick = {
+
+        },
         modifier = Modifier
-            .fillMaxWidth()
-            .heightIn(min = 40.dp),
-        text = text,
-        style = TextStyle(
-            fontSize = fontSize,
-            color = color,
-            fontWeight = fontWeight
-        ),
-        textAlign = TextAlign.Center
-    )
+            .height(80.dp)
+            .width(80.dp),
+        shape = RoundedCornerShape(50),
+        colors = ButtonDefaults.buttonColors(containerColor = Color.White)
+    ) {
+        Icon(
+            imageVector = Icons.Default.ArrowForward,
+            modifier = Modifier
+                .fillMaxSize(),
+            contentDescription = "",
+            tint = Color.Black
+        )
+    }
 }
 
-fun Arrow() {
-    //Todo crear componente flecha
-}
