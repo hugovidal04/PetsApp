@@ -24,7 +24,7 @@ import com.example.petsapp.ui.theme.Principal
 
 @Preview
 @Composable
-fun InitialScreen() {
+fun InitialScreen(navigateToLogin:() -> Unit = {}) {
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -51,7 +51,7 @@ fun InitialScreen() {
             color = Color.Black, fontWeight = FontWeight.Bold
         )
         Spacer(modifier = Modifier.weight(1f))
-        Arrow()
+        Arrow(onNavigateToLogin = navigateToLogin)
         Spacer(modifier = Modifier.weight(1f))
     }
 }

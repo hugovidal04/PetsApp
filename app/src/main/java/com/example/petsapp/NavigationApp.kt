@@ -12,7 +12,9 @@ fun NavigationApp(navHostController: NavHostController) {
 
     NavHost(navController = navHostController, startDestination = "initial") {
         composable("initial") {
-            InitialScreen()
+            InitialScreen(
+                navigateToLogin = { navHostController.navigate("login") }
+            )
         }
         composable("login") {
             LoginScreen()
