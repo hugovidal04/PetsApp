@@ -15,10 +15,10 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun Arrow() {
+fun Arrow(onNavigateToLogin: () -> Unit) {
     Button(
         onClick = {
-
+            onNavigateToLogin()
         },
         modifier = Modifier
             .height(80.dp)
