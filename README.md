@@ -5,7 +5,7 @@ Aplicación para android que permite a las personas llevar un control completo d
 
 <p>
 **Las tecnologías que se usaron fueron:**
-**</p>
+</p>
 
 - Kotlin -> Lenguaje principal.
 - Jetpack compose -> UI moderna.
@@ -15,7 +15,7 @@ Aplicación para android que permite a las personas llevar un control completo d
 
 <p>
 **Instalación:**
-**</p>
+</p>
 
 1.Clona el repositorio:
 
