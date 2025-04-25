@@ -4,7 +4,7 @@ Aplicación para android que permite a las personas llevar un control completo d
 </p>
 
 <p>
-**Las tecnologías que se usaron fueron:
+**Las tecnologías que se usaron fueron:**
 **</p>
 
 - Kotlin -> Lenguaje principal.
@@ -14,7 +14,7 @@ Aplicación para android que permite a las personas llevar un control completo d
 - OpenRouteService -> Geolocalización y mapas.
 
 <p>
-**Instalación:
+**Instalación:**
 **</p>
 
 1.Clona el repositorio:
