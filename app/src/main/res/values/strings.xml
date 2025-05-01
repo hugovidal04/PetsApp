@@ -1,5 +1,11 @@
 <resources>
     <string name="app_name">PetsApp</string>
-    <string name="bienvenida">Bienvenido a PetsApp</string>
+    <string name="bienvenida_inicial">Bienvenido a PetsApp</string>
     <string name="llevar_registro">Aquí podrás llevar un registro de tu mascota</string>
+    <string name="bienvenida_login">Bienvenido</string>
+    <string name="email">Email:</string>
+    <string name="contraseña">Contraseña:</string>
+    <string name="iniciar_sesion">Iniciar sesión</string>
+    <string name="sin_cuenta">No tienes cuenta?</string>
+    <string name="crea_cuenta">Crear cuenta</string>
 </resources>
