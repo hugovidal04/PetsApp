@@ -42,7 +42,7 @@ fun InitialScreen(navigateToLogin:() -> Unit = {}) {
         )
         Spacer(modifier = Modifier.weight(1f))
         NormalText(
-            text = stringResource(id = R.string.bienvenida), fontSize = 40.sp,
+            text = stringResource(id = R.string.bienvenida_inicial), fontSize = 40.sp,
             color = Color.Black, fontWeight = FontWeight.Bold
         )
         Spacer(modifier = Modifier.weight(1f))
