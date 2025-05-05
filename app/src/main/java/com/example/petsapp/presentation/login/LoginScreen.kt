@@ -10,12 +10,10 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
@@ -24,11 +22,12 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.petsapp.R
+import com.example.petsapp.presentation.components.EmailField
 import com.example.petsapp.presentation.components.ListaImagenes
 import com.example.petsapp.presentation.components.NormalText
+import com.example.petsapp.ui.theme.FondoPrincipal
 import com.example.petsapp.ui.theme.Principal
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Preview
 @Composable
 fun LoginScreen() {
@@ -52,7 +51,7 @@ fun LoginScreen() {
                 modifier = Modifier
                     .fillMaxWidth()
                     .weight(1f),
-                color = Color.White,
+                color = FondoPrincipal,
                 shape = RoundedCornerShape(topStart = 32.dp, topEnd = 32.dp)
             ) {
                 Column(
@@ -70,6 +69,7 @@ fun LoginScreen() {
                             fontSize = 16.sp,
                             textAlign = TextAlign.Left
                         )
+                        EmailField()
                         Spacer(modifier = Modifier.height(4.dp))
                     }
                     Column {
