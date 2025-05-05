@@ -6,6 +6,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.example.petsapp.presentation.initial.InitialScreen
 import com.example.petsapp.presentation.login.LoginScreen
+import com.example.petsapp.presentation.login.LoginViewModel
 
 @Composable
 fun NavigationApp(navHostController: NavHostController) {
@@ -17,7 +18,7 @@ fun NavigationApp(navHostController: NavHostController) {
             )
         }
         composable("login") {
-            LoginScreen()
+            LoginScreen(LoginViewModel())
         }
     }
 }

@@ -7,7 +7,6 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonColors
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Text
@@ -66,10 +65,11 @@ fun ListaImagenes(
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun EmailField() {
+fun EmailField(email: String, onTextFieldChanged: (String) -> Unit) {
+
     TextField(
-        value = "",
-        onValueChange = {},
+        value = email,
+        onValueChange = { onTextFieldChanged(it) },
         modifier = Modifier.fillMaxWidth(),
         placeholder = { Text(text = "Email") },
         keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email),
@@ -81,10 +81,10 @@ fun EmailField() {
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun PasswordField() {
+fun PasswordField(password: String, onTextFieldChanged: (String) -> Unit) {
     TextField(
-        value = "",
-        onValueChange = {},
+        value = password,
+        onValueChange = {onTextFieldChanged(it)},
         placeholder = { Text(text = "Contraseña") },
         modifier = Modifier.fillMaxWidth(),
         keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
@@ -95,7 +95,7 @@ fun PasswordField() {
 }
 
 @Composable
-fun LoginButton() {
+fun LoginButton(loginEnable: Boolean, onLoginSelected: () -> Unit) {
     Button(
         onClick = { }, modifier = Modifier
             .fillMaxWidth()
@@ -103,7 +103,7 @@ fun LoginButton() {
         colors = ButtonDefaults.buttonColors(
             containerColor = Color.White,
             disabledContentColor = Color.White
-        )
+        ), enabled = loginEnable
     ) {
         Text(text = "Inicia sesión")
     }
