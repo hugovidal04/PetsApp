@@ -12,13 +12,14 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.petsapp.R
@@ -30,9 +31,14 @@ import com.example.petsapp.presentation.components.PasswordField
 import com.example.petsapp.ui.theme.FondoPrincipal
 import com.example.petsapp.ui.theme.Principal
 
-@Preview
+//@Preview
 @Composable
-fun LoginScreen() {
+fun LoginScreen(viewModel: LoginViewModel) {
+
+    val email :String by viewModel.email.observeAsState(initial = "")
+    val password :String by viewModel.password.observeAsState(initial = "")
+    val loginEnable:Boolean by viewModel.loginEnable.observeAsState(initial = false)
+
     Box(modifier = Modifier.fillMaxSize()) {
         Box(
             modifier = Modifier
@@ -71,7 +77,7 @@ fun LoginScreen() {
                             fontSize = 16.sp,
                             textAlign = TextAlign.Left
                         )
-                        EmailField()
+                        EmailField(email, {viewModel.onLoginChanged(it, password)})
                         Spacer(modifier = Modifier.height(4.dp))
                     }
                     Column {
@@ -80,9 +86,9 @@ fun LoginScreen() {
                             fontSize = 16.sp,
                             textAlign = TextAlign.Left
                         )
-                        PasswordField()
+                        PasswordField(password) {viewModel.onLoginChanged(email, it)}
                         Spacer(modifier = Modifier.height(4.dp))
-                        LoginButton()
+                        LoginButton(loginEnable) {}
                     }
                 }
             }
