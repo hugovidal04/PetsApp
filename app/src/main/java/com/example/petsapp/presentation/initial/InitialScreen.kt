@@ -24,7 +24,7 @@ import com.example.petsapp.ui.theme.Principal
 
 @Preview
 @Composable
-fun InitialScreen(navigateToLogin:() -> Unit = {}) {
+fun InitialScreen(navigateToLogin: () -> Unit = {}) {
     Column(
         modifier = Modifier
             .fillMaxSize()
