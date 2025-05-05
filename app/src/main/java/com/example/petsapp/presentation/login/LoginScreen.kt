@@ -24,6 +24,7 @@ import androidx.compose.ui.unit.sp
 import com.example.petsapp.R
 import com.example.petsapp.presentation.components.EmailField
 import com.example.petsapp.presentation.components.ListaImagenes
+import com.example.petsapp.presentation.components.LoginButton
 import com.example.petsapp.presentation.components.NormalText
 import com.example.petsapp.presentation.components.PasswordField
 import com.example.petsapp.ui.theme.FondoPrincipal
@@ -81,6 +82,7 @@ fun LoginScreen() {
                         )
                         PasswordField()
                         Spacer(modifier = Modifier.height(4.dp))
+                        LoginButton()
                     }
                 }
             }

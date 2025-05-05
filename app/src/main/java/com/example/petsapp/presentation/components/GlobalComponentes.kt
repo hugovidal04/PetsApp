@@ -3,8 +3,12 @@ package com.example.petsapp.presentation.components
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonColors
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
@@ -88,4 +92,19 @@ fun PasswordField() {
         maxLines = 1,
         colors = TextFieldDefaults.textFieldColors(disabledTextColor = Color.Blue) // TODO añadir mas colores
     )
+}
+
+@Composable
+fun LoginButton() {
+    Button(
+        onClick = { }, modifier = Modifier
+            .fillMaxWidth()
+            .height(48.dp),
+        colors = ButtonDefaults.buttonColors(
+            containerColor = Color.White,
+            disabledContentColor = Color.White
+        )
+    ) {
+        Text(text = "Inicia sesión")
+    }
 }
