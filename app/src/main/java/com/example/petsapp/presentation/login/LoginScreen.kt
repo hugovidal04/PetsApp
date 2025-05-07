@@ -4,11 +4,13 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
@@ -37,7 +39,8 @@ import com.example.petsapp.ui.theme.Principal
 @Composable
 fun LoginScreen(
     viewModel: LoginViewModel = viewModel(),
-    navigateToHome: () -> Unit = {}
+    navigateToHome: () -> Unit = {},
+    navigateToSignup: () -> Unit = {}
 ) {
 
     var email by remember { mutableStateOf("") }
@@ -73,7 +76,8 @@ fun LoginScreen(
                     NormalText(
                         text = stringResource(id = R.string.bienvenida_login),
                         fontSize = 30.sp,
-                        fontWeight = FontWeight.Bold
+                        fontWeight = FontWeight.Bold,
+                        modifier = Modifier.fillMaxWidth()
                     )
                     Column {
                         NormalText(
@@ -82,8 +86,8 @@ fun LoginScreen(
                             textAlign = TextAlign.Left
                         )
                         EmailField(value = email, onValueChange = { email = it })
-                        Spacer(modifier = Modifier.height(4.dp))
                     }
+                    //Spacer(modifier = Modifier.height(4.dp))
                     Column {
                         NormalText(
                             text = stringResource(id = R.string.contraseña),
@@ -91,15 +95,38 @@ fun LoginScreen(
                             textAlign = TextAlign.Left
                         )
                         PasswordField(value = password, onValueChange = { password = it })
-                        Spacer(modifier = Modifier.height(4.dp))
-                        LoginButton(
-                            onClick = {
-                                if (email.isNotBlank() && password.isNotBlank()) {
-                                    viewModel.login(email, password, navigateToHome)
-                                } else {
-                                    println("Email o contraseña vacíos")
-                                }
+                    }
+                    //Spacer(modifier = Modifier.height(4.dp))
+                    LoginButton(
+                        onClick = {
+                            if (email.isNotBlank() && password.isNotBlank()) {
+                                viewModel.login(email, password, navigateToHome)
+                            } else {
+                                println("Email o contraseña vacíos")
                             }
+                        }
+                    )
+                    //Spacer(modifier = Modifier.height(4.dp))
+                    Row(
+                        modifier = Modifier
+                            .fillMaxWidth(),
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.Center
+                    ) {
+                        NormalText(
+                            text = stringResource(
+                                id = R.string.sin_cuenta
+                            ),
+                            fontSize = 16.sp
+                        )
+                        Spacer(modifier = Modifier.width(4.dp))
+                        NormalText(
+                            text = stringResource(
+                                id = R.string.crea_cuenta
+                            ),
+                            fontSize = 16.sp,
+                            fontWeight = FontWeight.Bold,
+                            onClick = navigateToSignup
                         )
                     }
                 }

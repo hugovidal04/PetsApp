@@ -1,6 +1,7 @@
 package com.example.petsapp.presentation.components
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -30,18 +31,19 @@ fun NormalText(
     fontSize: TextUnit = 48.sp,
     color: Color = Color.Black,
     fontWeight: FontWeight = FontWeight.Normal,
-    textAlign: TextAlign = TextAlign.Center
+    textAlign: TextAlign = TextAlign.Center,
+    modifier: Modifier = Modifier, //Dependiendo de si queremos que se centre el texto o no usaremos ".fillMaxWidth()"
+    onClick: () -> Unit = {}
 ) {
     Text(
-        modifier = Modifier
-            .fillMaxWidth(),
+        modifier = modifier.clickable(onClick = onClick),
         text = text,
         style = TextStyle(
             fontSize = fontSize,
             color = color,
             fontWeight = fontWeight
         ),
-        textAlign = textAlign
+        textAlign = textAlign,
     )
 }
 
