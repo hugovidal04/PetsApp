@@ -13,7 +13,9 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.livedata.observeAsState
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
@@ -22,6 +24,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.petsapp.R
 import com.example.petsapp.presentation.components.EmailField
 import com.example.petsapp.presentation.components.ListaImagenes
@@ -31,13 +34,14 @@ import com.example.petsapp.presentation.components.PasswordField
 import com.example.petsapp.ui.theme.FondoPrincipal
 import com.example.petsapp.ui.theme.Principal
 
-//@Preview
 @Composable
-fun LoginScreen(viewModel: LoginViewModel) {
+fun LoginScreen(
+    viewModel: LoginViewModel = viewModel(),
+    onLoginSuccess: () -> Unit
+) {
 
-    val email :String by viewModel.email.observeAsState(initial = "")
-    val password :String by viewModel.password.observeAsState(initial = "")
-    val loginEnable:Boolean by viewModel.loginEnable.observeAsState(initial = false)
+    var email by remember { mutableStateOf("") }
+    var password by remember { mutableStateOf("") }
 
     Box(modifier = Modifier.fillMaxSize()) {
         Box(
@@ -77,7 +81,7 @@ fun LoginScreen(viewModel: LoginViewModel) {
                             fontSize = 16.sp,
                             textAlign = TextAlign.Left
                         )
-                        EmailField(email, {viewModel.onLoginChanged(it, password)})
+                        EmailField(value = email, onValueChange = { email = it })
                         Spacer(modifier = Modifier.height(4.dp))
                     }
                     Column {
@@ -86,12 +90,22 @@ fun LoginScreen(viewModel: LoginViewModel) {
                             fontSize = 16.sp,
                             textAlign = TextAlign.Left
                         )
-                        PasswordField(password) {viewModel.onLoginChanged(email, it)}
+                        PasswordField(value = password, onValueChange = { password = it })
                         Spacer(modifier = Modifier.height(4.dp))
-                        LoginButton(loginEnable) {}
+                        LoginButton(
+                            onClick = {
+                                if (email.isNotBlank() && password.isNotBlank()) {
+                                    viewModel.login(email, password, onLoginSuccess)
+                                } else {
+                                    println("Email o contraseña vacíos")
+                                }
+                            }
+                        )
                     }
                 }
             }
         }
     }
 }
+
+
