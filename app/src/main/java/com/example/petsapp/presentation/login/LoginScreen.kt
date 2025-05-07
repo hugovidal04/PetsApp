@@ -6,12 +6,15 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -46,14 +49,17 @@ fun LoginScreen(
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
 
-    Box(modifier = Modifier.fillMaxSize()) {
-        Box(
+    val scrollState = rememberScrollState()
+
+    Box(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(color = Principal)
+    ) {
+        Column(
             modifier = Modifier
                 .fillMaxSize()
-                .background(color = Principal)
-        )
-        Column(
-            modifier = Modifier.fillMaxSize(),
+                .verticalScroll(scrollState),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Spacer(modifier = Modifier.height(60.dp))
@@ -64,13 +70,13 @@ fun LoginScreen(
             Spacer(modifier = Modifier.height(60.dp))
             Surface(
                 modifier = Modifier
-                    .fillMaxWidth()
-                    .weight(1f),
+                    .fillMaxWidth(),
                 color = FondoPrincipal,
                 shape = RoundedCornerShape(topStart = 32.dp, topEnd = 32.dp)
             ) {
                 Column(
-                    modifier = Modifier.padding(horizontal = 24.dp, vertical = 32.dp),
+                    modifier = Modifier
+                        .padding(horizontal = 24.dp, vertical = 32.dp),
                     verticalArrangement = Arrangement.spacedBy(20.dp) //Mirar de cambiar por un spacer al final de cada campo
                 ) {
                     NormalText(
@@ -106,7 +112,7 @@ fun LoginScreen(
                             }
                         }
                     )
-                    //Spacer(modifier = Modifier.height(4.dp))
+                    Spacer(modifier = Modifier.height(4.dp))
                     Row(
                         modifier = Modifier
                             .fillMaxWidth(),
@@ -134,5 +140,3 @@ fun LoginScreen(
         }
     }
 }
-
-
