@@ -8,10 +8,8 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
-import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -63,47 +61,45 @@ fun ListaImagenes(
     }
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun EmailField(email: String, onTextFieldChanged: (String) -> Unit) {
-
+fun EmailField(value: String, onValueChange: (String) -> Unit) {
     TextField(
-        value = email,
-        onValueChange = { onTextFieldChanged(it) },
+        value = value,
+        onValueChange = onValueChange,
         modifier = Modifier.fillMaxWidth(),
         placeholder = { Text(text = "Email") },
         keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email),
         singleLine = true,
-        maxLines = 1,
-        colors = TextFieldDefaults.textFieldColors(disabledTextColor = Color.Blue) // TODO añadir mas colores
+        maxLines = 1
     )
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun PasswordField(password: String, onTextFieldChanged: (String) -> Unit) {
+fun PasswordField(value: String, onValueChange: (String) -> Unit) {
     TextField(
-        value = password,
-        onValueChange = {onTextFieldChanged(it)},
-        placeholder = { Text(text = "Contraseña") },
+        value = value,
+        onValueChange = onValueChange,
         modifier = Modifier.fillMaxWidth(),
+        placeholder = { Text(text = "Contraseña") },
         keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
         singleLine = true,
-        maxLines = 1,
-        colors = TextFieldDefaults.textFieldColors(disabledTextColor = Color.Blue) // TODO añadir mas colores
+        maxLines = 1
     )
 }
 
 @Composable
-fun LoginButton(loginEnable: Boolean, onLoginSelected: () -> Unit) {
+fun LoginButton(
+    onClick: () -> Unit
+) {
     Button(
-        onClick = { }, modifier = Modifier
+        onClick = onClick,
+        modifier = Modifier
             .fillMaxWidth()
             .height(48.dp),
         colors = ButtonDefaults.buttonColors(
             containerColor = Color.White,
             disabledContentColor = Color.White
-        ), enabled = loginEnable
+        )
     ) {
         Text(text = "Inicia sesión")
     }
