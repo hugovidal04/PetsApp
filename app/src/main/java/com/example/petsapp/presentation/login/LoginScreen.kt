@@ -37,7 +37,7 @@ import com.example.petsapp.ui.theme.Principal
 @Composable
 fun LoginScreen(
     viewModel: LoginViewModel = viewModel(),
-    onLoginSuccess: () -> Unit
+    navigateToHome: () -> Unit = {}
 ) {
 
     var email by remember { mutableStateOf("") }
@@ -95,7 +95,7 @@ fun LoginScreen(
                         LoginButton(
                             onClick = {
                                 if (email.isNotBlank() && password.isNotBlank()) {
-                                    viewModel.login(email, password, onLoginSuccess)
+                                    viewModel.login(email, password, navigateToHome)
                                 } else {
                                     println("Email o contraseña vacíos")
                                 }
