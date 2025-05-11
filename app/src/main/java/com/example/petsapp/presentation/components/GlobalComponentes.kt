@@ -64,12 +64,16 @@ fun ListaImagenes(
 }
 
 @Composable
-fun EmailField(value: String, onValueChange: (String) -> Unit) {
+fun TextField(
+    value: String,
+    onValueChange: (String) -> Unit,
+    placeholder: @Composable () -> Unit
+) {
     TextField(
         value = value,
         onValueChange = onValueChange,
         modifier = Modifier.fillMaxWidth(),
-        placeholder = { Text(text = "Email") },
+        placeholder = placeholder,
         keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email),
         singleLine = true,
         maxLines = 1
