@@ -13,6 +13,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Surface
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -28,11 +29,11 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.petsapp.R
-import com.example.petsapp.presentation.components.EmailField
 import com.example.petsapp.presentation.components.ListaImagenes
 import com.example.petsapp.presentation.components.LoginButton
 import com.example.petsapp.presentation.components.NormalText
 import com.example.petsapp.presentation.components.PasswordField
+import com.example.petsapp.presentation.components.TextField
 import com.example.petsapp.ui.theme.FondoPrincipal
 import com.example.petsapp.ui.theme.Principal
 
@@ -89,7 +90,11 @@ fun LoginScreen(
                             fontSize = 16.sp,
                             textAlign = TextAlign.Left
                         )
-                        EmailField(value = email, onValueChange = { email = it })
+                        TextField(
+                            value = email,
+                            onValueChange = { email = it },
+                            placeholder = { Text("Email") }
+                        )
                     }
                     //Spacer(modifier = Modifier.height(4.dp))
                     Column {
@@ -126,7 +131,7 @@ fun LoginScreen(
                         Spacer(modifier = Modifier.width(4.dp))
                         NormalText(
                             text = stringResource(
-                                id = R.string.crea_cuenta
+                                id = R.string.crea_cuenta_inicio
                             ),
                             fontSize = 16.sp,
                             fontWeight = FontWeight.Bold,
