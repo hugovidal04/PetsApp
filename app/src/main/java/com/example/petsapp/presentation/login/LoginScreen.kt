@@ -30,7 +30,7 @@ import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.petsapp.R
 import com.example.petsapp.presentation.components.ListaImagenes
-import com.example.petsapp.presentation.components.LoginButton
+import com.example.petsapp.presentation.components.LoginRegisterButton
 import com.example.petsapp.presentation.components.NormalText
 import com.example.petsapp.presentation.components.PasswordField
 import com.example.petsapp.presentation.components.TextField
@@ -41,7 +41,8 @@ import com.example.petsapp.ui.theme.Principal
 fun LoginScreen(
     viewModel: LoginViewModel = viewModel(),
     navigateToHome: () -> Unit = {},
-    navigateToSignup: () -> Unit = {}
+    navigateToSignup: () -> Unit = {},
+    navigateToAdmin: () -> Unit = {}
 ) {
 
     var email by remember { mutableStateOf("") }
@@ -106,7 +107,7 @@ fun LoginScreen(
                         PasswordField(value = password, onValueChange = { password = it })
                     }
                     //Spacer(modifier = Modifier.height(4.dp))
-                    LoginButton(
+                    LoginRegisterButton(
                         onClick = {
                             if (email.isNotBlank() && password.isNotBlank()) {
                                 viewModel.login(email, password, navigateToHome)
