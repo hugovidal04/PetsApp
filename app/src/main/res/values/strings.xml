@@ -5,7 +5,12 @@
     <string name="bienvenida_login">Bienvenido</string>
     <string name="email">Email:</string>
     <string name="contraseña">Contraseña:</string>
+    <string name="repetir_contraseña">Repite la contraseña:</string>
     <string name="iniciar_sesion">Iniciar sesión</string>
     <string name="sin_cuenta">No tienes cuenta?</string>
-    <string name="crea_cuenta">Crear cuenta</string>
+    <string name="con_cuenta">Ya tienes una cuenta?</string>
+    <string name="crea_cuenta_inicio">Crear cuenta</string>
+    <string name="crea_cuenta_registro">Crear una cuenta</string>
+    <string name="nombre">Nombre:</string>
+    <string name="terminos">Acepto los términos y condiciones de uso</string>
 </resources>
