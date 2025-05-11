@@ -24,32 +24,38 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.petsapp.R
 import com.example.petsapp.presentation.components.ListaImagenes
+import com.example.petsapp.presentation.components.LoginRegisterButton
 import com.example.petsapp.presentation.components.NormalText
-import com.example.petsapp.presentation.components.TextField
 import com.example.petsapp.presentation.components.PasswordField
+import com.example.petsapp.presentation.components.TextField
 import com.example.petsapp.ui.theme.FondoPrincipal
 import com.example.petsapp.ui.theme.Principal
 
 @Composable
-fun SingupScreen() {
+fun SingupScreen(
+    viewModel: SignupViewModel = viewModel(),
+    navigateToHome: () -> Unit = {}
+) {
 
     var name by remember { mutableStateOf("") }
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
     var confirmPassword by remember { mutableStateOf("") }
-    var termsAccepted by remember { mutableStateOf("") }
+    //var termsAccepted by remember { mutableStateOf(false) }
+    var errorMessage by remember { mutableStateOf<String?>(null) }
 
     Box(
         modifier = Modifier
             .fillMaxSize()
             .background(color = Principal)
     ) {
-        Column (
+        Column(
             modifier = Modifier
                 .fillMaxSize(),
-                horizontalAlignment = Alignment.CenterHorizontally
+            horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Spacer(modifier = Modifier.height(50.dp))
             ListaImagenes(
@@ -61,14 +67,14 @@ fun SingupScreen() {
                 size = 100.dp
             )
             Spacer(modifier = Modifier.height(50.dp))
-            Surface (
+            Surface(
                 modifier = Modifier
                     .fillMaxWidth()
                     .weight(1f),
                 color = FondoPrincipal,
                 shape = RoundedCornerShape(topStart = 32.dp, topEnd = 32.dp)
             ) {
-                Column (
+                Column(
                     modifier = Modifier
                         .padding(horizontal = 24.dp, vertical = 32.dp),
                     verticalArrangement = Arrangement.spacedBy(20.dp)
@@ -86,7 +92,7 @@ fun SingupScreen() {
                         )
                         TextField(
                             value = name,
-                            onValueChange = { name = it},
+                            onValueChange = { name = it },
                             placeholder = { Text("Nombre") }
                         )
                     }
@@ -117,10 +123,26 @@ fun SingupScreen() {
                             fontSize = 16.sp
                         )
                         PasswordField(
-                            value = password,
-                            onValueChange = { password = it },
+                            value = confirmPassword,
+                            onValueChange = { confirmPassword = it },
                         )
                     }
+                    NormalText(
+                        text = stringResource(id = R.string.terminos),
+                        fontSize = 16.sp
+                    )
+                    /*errorMessage?.let {
+                        Text(text = it, color = Color.Red, fontSize = 14.sp)
+                    }*/
+                    LoginRegisterButton(
+                        onClick = {
+                            viewModel.signup(
+                                name, email, password, confirmPassword, // termsAccepted,
+                                onSuccess = navigateToHome,
+                                onFailure = { msg -> errorMessage = msg }
+                            )
+                        }
+                    )
                 }
             }
         }
