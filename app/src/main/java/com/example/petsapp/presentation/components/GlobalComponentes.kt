@@ -94,7 +94,7 @@ fun PasswordField(value: String, onValueChange: (String) -> Unit) {
 }
 
 @Composable
-fun LoginButton(
+fun LoginRegisterButton(
     onClick: () -> Unit
 ) {
     Button(
