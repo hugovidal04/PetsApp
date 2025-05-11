@@ -4,6 +4,7 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import com.example.petsapp.presentation.admin.AdminScreen
 import com.example.petsapp.presentation.home.HomeScreen
 import com.example.petsapp.presentation.initial.InitialScreen
 import com.example.petsapp.presentation.login.LoginScreen
@@ -21,6 +22,7 @@ fun NavigationApp(navHostController: NavHostController) {
         composable("login") {
             LoginScreen(
                 navigateToHome = { navHostController.navigate("home") },
+                navigateToAdmin = { navHostController.navigate("admin") },
                 navigateToSignup = { navHostController.navigate("signup") }
             )
         }
@@ -29,6 +31,9 @@ fun NavigationApp(navHostController: NavHostController) {
         }
         composable("home") {
             HomeScreen()
+        }
+        composable("admin") {
+            AdminScreen()
         }
     }
 }
