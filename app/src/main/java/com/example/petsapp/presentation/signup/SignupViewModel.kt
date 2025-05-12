@@ -1,12 +1,10 @@
 package com.example.petsapp.presentation.signup
 
 import androidx.lifecycle.ViewModel
-import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.auth
 
 class SignupViewModel : ViewModel() {
-    private val auth: FirebaseAuth = Firebase.auth
+    private val auth: FirebaseAuth = FirebaseAuth.getInstance()
 
     fun signup(
         name: String,
