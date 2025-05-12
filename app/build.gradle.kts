@@ -68,6 +68,10 @@ dependencies {
     implementation(libs.androidx.material.icons.extended)
     implementation(libs.androidx.runtime.livedata)
 
+    //Para la base de datos (cloud firestore)
+    implementation(platform(libs.firebase.bom.v33120))
+    implementation(libs.firebase.firestore)
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
