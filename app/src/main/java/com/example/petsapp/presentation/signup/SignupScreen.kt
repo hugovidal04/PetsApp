@@ -4,6 +4,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -44,7 +45,7 @@ fun SingupScreen(
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
     var confirmPassword by remember { mutableStateOf("") }
-    //var termsAccepted by remember { mutableStateOf(false) }
+    var termsAccepted by remember { mutableStateOf(false) }
     var errorMessage by remember { mutableStateOf<String?>(null) }
 
     Box(
@@ -127,17 +128,23 @@ fun SingupScreen(
                             onValueChange = { confirmPassword = it },
                         )
                     }
-                    NormalText(
-                        text = stringResource(id = R.string.terminos),
-                        fontSize = 16.sp
-                    )
+                    Row {
+                        Checkbox(
+                            checked = termsAccepted,
+                            onCheckedChange = { newValue -> termsAccepted = newValue }
+                        )
+                        NormalText(
+                            text = stringResource(id = R.string.terminos),
+                            fontSize = 16.sp
+                        )
+                    }
                     /*errorMessage?.let {
                         Text(text = it, color = Color.Red, fontSize = 14.sp)
                     }*/
                     LoginRegisterButton(
                         onClick = {
                             viewModel.signup(
-                                name, email, password, confirmPassword, // termsAccepted,
+                                name, email, password, confirmPassword, termsAccepted,
                                 onSuccess = navigateToHome,
                                 onFailure = { msg -> errorMessage = msg }
                             )
