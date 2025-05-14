@@ -13,4 +13,5 @@
     <string name="crea_cuenta_registro">Crear una cuenta</string>
     <string name="nombre">Nombre:</string>
     <string name="terminos">Acepto los términos y condiciones de uso</string>
+    <string name="panel_admin">Panel de administración</string>
 </resources>
