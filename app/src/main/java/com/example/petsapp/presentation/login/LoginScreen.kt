@@ -48,8 +48,6 @@ fun LoginScreen(
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
 
-    //val scrollState = rememberScrollState()
-
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -58,7 +56,7 @@ fun LoginScreen(
         Column(
             modifier = Modifier
                 .fillMaxSize(),
-            //.verticalScroll(scrollState),
+            //.verticalScroll(rememberScrollState()),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Spacer(modifier = Modifier.height(60.dp))
