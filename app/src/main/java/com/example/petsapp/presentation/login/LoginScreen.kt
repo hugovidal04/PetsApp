@@ -108,7 +108,13 @@ fun LoginScreen(
                     LoginRegisterButton(
                         onClick = {
                             if (email.isNotBlank() && password.isNotBlank()) {
-                                viewModel.login(email, password, navigateToHome)
+                                viewModel.login(
+                                    email = email,
+                                    password = password,
+                                    onSuccessAdmin = navigateToAdmin,
+                                    onSuccessUser = navigateToHome,
+                                    onFailure = { errorMsg -> println(errorMsg) }
+                                )
                             } else {
                                 println("Email o contraseña vacíos")
                             }
