@@ -48,22 +48,25 @@ class SignupViewModel : ViewModel() {
         auth.createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
-                    val userId = auth.currentUser?.uid
-                    val userMap = hashMapOf(
-                        "name" to name,
-                        "email" to email,
-                        "isAdmin" to false,
-                        "acceptedTerms" to true
-                    )
-                    userId?.let {
-                        db.collection("users").document(it).set(userMap)
+                    val userId = task.result.user?.uid
+                    if (userId != null) {
+                        val userMap = hashMapOf(
+                            "uid" to userId,
+                            "name" to name,
+                            "email" to email,
+                            "isAdmin" to false,
+                            "acceptedTerms" to true
+                        )
+                        db.collection("users").document(userId).set(userMap)
                             .addOnSuccessListener {
                                 onSuccess()
                             }
                             .addOnFailureListener { e ->
                                 onFailure("Error al guardar datos: ${e.message}")
                             }
-                    } ?: onFailure("Error al obtener ID del usuario")
+                    } else {
+                        onFailure("Error al obtener ID del usuario.")
+                    }
                 } else {
                     onFailure("Error al registrar: ${task.exception?.message}")
                 }
