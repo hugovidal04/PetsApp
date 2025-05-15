@@ -94,19 +94,20 @@ fun PasswordField(value: String, onValueChange: (String) -> Unit) {
 }
 
 @Composable
-fun LoginRegisterButton(
-    onClick: () -> Unit
+fun ButtonComponent(
+    onClick: () -> Unit,
+    modifier: Modifier = Modifier,
+    text: String
 ) {
     Button(
         onClick = onClick,
-        modifier = Modifier
-            .fillMaxWidth()
+        modifier = modifier
             .height(48.dp),
         colors = ButtonDefaults.buttonColors(
             containerColor = Color.White,
             disabledContentColor = Color.White
         )
     ) {
-        Text(text = "Inicia sesión")
+        Text(text = text)
     }
 }

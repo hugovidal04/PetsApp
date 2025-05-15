@@ -30,7 +30,7 @@ import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.petsapp.R
 import com.example.petsapp.presentation.components.ListaImagenes
-import com.example.petsapp.presentation.components.LoginRegisterButton
+import com.example.petsapp.presentation.components.ButtonComponent
 import com.example.petsapp.presentation.components.NormalText
 import com.example.petsapp.presentation.components.PasswordField
 import com.example.petsapp.presentation.components.TextField
@@ -105,7 +105,8 @@ fun LoginScreen(
                         PasswordField(value = password, onValueChange = { password = it })
                     }
                     //Spacer(modifier = Modifier.height(4.dp))
-                    LoginRegisterButton(
+                    ButtonComponent(
+                        modifier = Modifier.fillMaxWidth(),
                         onClick = {
                             if (email.isNotBlank() && password.isNotBlank()) {
                                 viewModel.login(
@@ -118,7 +119,8 @@ fun LoginScreen(
                             } else {
                                 println("Email o contraseña vacíos")
                             }
-                        }
+                        },
+                        text = stringResource(id = R.string.boton_iniciar_sesion)
                     )
                     Spacer(modifier = Modifier.height(4.dp))
                     Row(

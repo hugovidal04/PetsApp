@@ -14,4 +14,8 @@
     <string name="nombre">Nombre:</string>
     <string name="terminos">Acepto los términos y condiciones de uso</string>
     <string name="panel_admin">Panel de administración</string>
+    <string name="boton_crear_cuenta_user">Crear una cuenta</string>
+    <string name="boton_crear_cuenta_admin">Crear usuario</string>
+    <string name="boton_iniciar_sesion">Iniciar sesión</string>
+    <string name="boton_cerrar_sesion_admin">Cerrar sesión</string>
 </resources>

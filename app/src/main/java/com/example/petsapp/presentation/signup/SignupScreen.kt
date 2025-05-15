@@ -30,7 +30,7 @@ import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.petsapp.R
 import com.example.petsapp.presentation.components.ListaImagenes
-import com.example.petsapp.presentation.components.LoginRegisterButton
+import com.example.petsapp.presentation.components.ButtonComponent
 import com.example.petsapp.presentation.components.NormalText
 import com.example.petsapp.presentation.components.PasswordField
 import com.example.petsapp.presentation.components.TextField
@@ -144,14 +144,16 @@ fun SingupScreen(
                     /*errorMessage?.let {
                         Text(text = it, color = Color.Red, fontSize = 14.sp)
                     }*/
-                    LoginRegisterButton(
+                    ButtonComponent(
+                        modifier = Modifier.fillMaxWidth(),
                         onClick = {
                             viewModel.signup(
                                 name, email, password, confirmPassword, termsAccepted,
                                 onSuccess = navigateToHome,
                                 onFailure = { msg -> errorMessage = msg }
                             )
-                        }
+                        },
+                        text = stringResource(id = R.string.boton_crear_cuenta_user)
                     )
                 }
             }
