@@ -18,7 +18,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.petsapp.R
-import com.example.petsapp.presentation.components.LoginRegisterButton
+import com.example.petsapp.presentation.components.ButtonComponent
 import com.example.petsapp.presentation.components.NormalText
 
 @Preview
@@ -45,16 +45,18 @@ fun AdminScreen() {
         Row(
             modifier = Modifier.fillMaxWidth()
         ) {
-            LoginRegisterButton(
+            ButtonComponent(
                 onClick = {
 
-                }
+                },
+                text = stringResource(id = R.string.boton_cerrar_sesion_admin)
             )
             Spacer(modifier = Modifier.width(8.dp))
-            LoginRegisterButton(
+            ButtonComponent(
                 onClick = {
 
-                }
+                },
+                text = stringResource(id = R.string.boton_crear_cuenta_admin)
             )
         }
     }
