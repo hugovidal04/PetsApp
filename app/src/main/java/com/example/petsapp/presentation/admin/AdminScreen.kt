@@ -14,7 +14,6 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
@@ -24,6 +23,7 @@ import com.example.petsapp.R
 import com.example.petsapp.presentation.components.BarraBusqueda
 import com.example.petsapp.presentation.components.ButtonComponent
 import com.example.petsapp.presentation.components.NormalText
+import com.example.petsapp.ui.theme.FondoPrincipal
 
 @Preview
 @Composable
@@ -31,7 +31,7 @@ fun AdminScreen() {
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .background(Color.White)
+            .background(color = FondoPrincipal)
             .padding(28.dp)
             .verticalScroll(rememberScrollState()),
         horizontalAlignment = Alignment.CenterHorizontally
