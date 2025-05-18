@@ -27,7 +27,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -36,12 +35,13 @@ import com.example.petsapp.presentation.components.ButtonComponent
 import com.example.petsapp.presentation.components.NormalText
 import com.example.petsapp.presentation.components.UserCard
 import com.example.petsapp.ui.theme.FondoPrincipal
+import com.google.firebase.auth.FirebaseAuth
 
 
-@Preview
 @Composable
 fun AdminScreen(
-    viewModel: AdminViewModel = viewModel()
+    viewModel: AdminViewModel = viewModel(),
+    onLogout: () -> Unit
 ) {
     var searchQuery by remember { mutableStateOf("") }
     val users by viewModel.users.collectAsState()
@@ -98,7 +98,8 @@ fun AdminScreen(
         ) {
             ButtonComponent(
                 onClick = {
-                    // Todo cerrar sesión
+                    FirebaseAuth.getInstance().signOut()
+                    onLogout()
                 },
                 text = stringResource(id = R.string.boton_cerrar_sesion_admin)
             )

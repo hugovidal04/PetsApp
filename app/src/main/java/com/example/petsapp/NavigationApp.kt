@@ -33,7 +33,9 @@ fun NavigationApp(navHostController: NavHostController) {
             HomeScreen()
         }
         composable("admin") {
-            AdminScreen()
+            AdminScreen(
+                onLogout = { navHostController.navigate("initial") }
+            )
         }
     }
 }
