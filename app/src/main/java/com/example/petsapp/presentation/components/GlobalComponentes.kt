@@ -177,13 +177,15 @@ fun UserCard(
     ) {
         Text("Nombre: ${user.name}", style = MaterialTheme.typography.bodyLarge)
         Text("Correo: ${user.email}", style = MaterialTheme.typography.bodyMedium)
-        Text("Rol: ${if (user.isAdmin) "Administrador" else "Usuario"}")
+        Text("Rol: ${user.isAdmin}")
 
         Spacer(modifier = Modifier.height(8.dp))
 
         Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-            Button(onClick = onDelete) {
-                Text("Eliminar")
+            if (!user.isAdmin) {
+                Button(onClick = onDelete) {
+                    Text("Eliminar")
+                }
             }
             if (!user.isAdmin) {
                 Button(onClick = onMakeAdmin) {

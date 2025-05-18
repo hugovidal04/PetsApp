@@ -24,9 +24,19 @@ class AdminViewModel : ViewModel() {
 
                 if (snapshot != null) {
                     val userList = snapshot.documents.mapNotNull { doc ->
-                        doc.toObject(AppUser::class.java)?.copy(uid = doc.id)
+                        try {
+                            AppUser(
+                                uid = doc.id,
+                                name = doc.getString("name") ?: "",
+                                email = doc.getString("email") ?: "",
+                                isAdmin = doc.getBoolean("isAdmin") ?: false,
+                                acceptedTerms = doc.getBoolean("acceptedTerms") ?: false
+                            )
+                        } catch (e: Exception) {
+                            Log.e("UserData", "Error mapping user ${doc.id}", e)
+                            null
+                        }
                     }
-                    Log.d("AdminViewModel", "Usuarios actualizados: ${userList.size}")
                     _users.value = userList
                 }
             }
