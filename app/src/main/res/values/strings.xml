@@ -18,4 +18,5 @@
     <string name="boton_crear_cuenta_admin">Crear usuario</string>
     <string name="boton_iniciar_sesion">Iniciar sesión</string>
     <string name="boton_cerrar_sesion_admin">Cerrar sesión</string>
+    <string name="correo_nombre">Buscar por nombre o correo</string>
 </resources>

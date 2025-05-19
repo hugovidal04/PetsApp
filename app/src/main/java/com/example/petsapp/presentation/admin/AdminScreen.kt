@@ -10,15 +10,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Search
-import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.Icon
-import androidx.compose.material3.OutlinedTextField
-import androidx.compose.material3.Text
-import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -35,15 +27,10 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.petsapp.R
 import com.example.petsapp.presentation.components.ButtonComponent
 import com.example.petsapp.presentation.components.NormalText
-import com.example.petsapp.presentation.components.UserCard
-import com.example.petsapp.ui.theme.Blanco
-import com.example.petsapp.ui.theme.ColorTexto
 import com.example.petsapp.ui.theme.FondoPrincipal
 import com.example.petsapp.ui.theme.PrincipalAdmin
 import com.google.firebase.auth.FirebaseAuth
 
-
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun AdminScreen(
     viewModel: AdminViewModel = viewModel(),
@@ -71,34 +58,12 @@ fun AdminScreen(
             fontWeight = FontWeight.Bold
         )
 
-        OutlinedTextField(
-            value = searchQuery,
+        BarraDeBusqueda(
+            searchQuery = searchQuery,
             onValueChange = { searchQuery = it },
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(8.dp),
-            label = {
-                Text(
-                    "Buscar por nombre o correo",
-                    fontSize = 14.sp,
-                    color = ColorTexto
-                )
-            },
-            leadingIcon = {
-                Icon(
-                    imageVector = Icons.Default.Search,
-                    contentDescription = "Buscar"
-                )
-            },
-            singleLine = true,
-            shape = RoundedCornerShape(12.dp),
-            colors = TextFieldDefaults.outlinedTextFieldColors(
-                containerColor = Blanco,
-                focusedBorderColor = ColorTexto,
-                unfocusedBorderColor = ColorTexto,
-                focusedTextColor = ColorTexto,
-                unfocusedTextColor = ColorTexto,
-            )
+                .padding(8.dp)
         )
 
         filteredUsers.forEach { user ->
