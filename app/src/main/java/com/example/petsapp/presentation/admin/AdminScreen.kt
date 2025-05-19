@@ -14,9 +14,12 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Search
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -25,6 +28,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -38,6 +42,7 @@ import com.example.petsapp.ui.theme.FondoPrincipal
 import com.google.firebase.auth.FirebaseAuth
 
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun AdminScreen(
     viewModel: AdminViewModel = viewModel(),
@@ -70,8 +75,13 @@ fun AdminScreen(
             onValueChange = { searchQuery = it },
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(horizontal = 8.dp),
-            label = { Text("Buscar por nombre o correo") },
+                .padding(8.dp),
+            label = {
+                Text(
+                    "Buscar por nombre o correo",
+                    style = MaterialTheme.typography.bodyMedium
+                )
+            },
             leadingIcon = {
                 Icon(
                     imageVector = Icons.Default.Search,
@@ -79,7 +89,19 @@ fun AdminScreen(
                 )
             },
             singleLine = true,
-            shape = RoundedCornerShape(12.dp)
+            shape = RoundedCornerShape(12.dp),
+            colors = TextFieldDefaults.outlinedTextFieldColors( // Todo cambiar colores
+                containerColor = Color.White,
+                focusedBorderColor = Color(0xFF6200EE),
+                unfocusedBorderColor = Color.LightGray,
+                focusedTextColor = Color.Black,
+                unfocusedTextColor = Color.Black,
+                cursorColor = Color(0xFF6200EE),
+                focusedLabelColor = Color.Blue,
+                unfocusedLabelColor = Color.Gray,
+                focusedLeadingIconColor = Color(0xFF6200EE),
+                unfocusedLeadingIconColor = Color.Gray
+            )
         )
 
         filteredUsers.forEach { user ->
