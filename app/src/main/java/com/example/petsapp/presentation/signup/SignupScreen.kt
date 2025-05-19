@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
@@ -41,7 +42,8 @@ import com.example.petsapp.ui.theme.Principal
 @Composable
 fun SingupScreen(
     viewModel: SignupViewModel = viewModel(),
-    navigateToHome: () -> Unit = {}
+    navigateToHome: () -> Unit = {},
+    navigateToLogin: () -> Unit = {}
 ) {
 
     var name by remember { mutableStateOf("") }
@@ -157,6 +159,28 @@ fun SingupScreen(
                         text = stringResource(id = R.string.boton_crear_cuenta_user),
                         backgroundColor = Blanco
                     )
+                    Row(
+                        modifier = Modifier
+                            .fillMaxWidth(),
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.Center
+                    ) {
+                        NormalText(
+                            text = stringResource(
+                                id = R.string.con_cuenta
+                            ),
+                            fontSize = 16.sp
+                        )
+                        Spacer(modifier = Modifier.width(4.dp))
+                        NormalText(
+                            text = stringResource(
+                                id = R.string.boton_iniciar_sesion
+                            ),
+                            fontSize = 16.sp,
+                            fontWeight = FontWeight.Bold,
+                            onClick = navigateToLogin
+                        )
+                    }
                 }
             }
         }

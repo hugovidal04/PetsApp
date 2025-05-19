@@ -27,7 +27,9 @@ fun NavigationApp(navHostController: NavHostController) {
             )
         }
         composable("signup") {
-            SingupScreen()
+            SingupScreen(
+                navigateToLogin = { navHostController.navigate("login") }
+            )
         }
         composable("home") {
             HomeScreen()
