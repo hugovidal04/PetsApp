@@ -1,17 +1,11 @@
 package com.example.petsapp.presentation.components
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
@@ -29,9 +23,6 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.petsapp.model.AppUser
-import com.example.petsapp.ui.theme.Blanco
-import com.example.petsapp.ui.theme.ColorTexto
 
 
 @Composable
@@ -120,38 +111,4 @@ fun ButtonComponent(
     ) {
         Text(text = text)
     }
-}
-
-@Composable
-fun UserCard(
-    user: AppUser,
-    onDelete: () -> Unit,
-    onMakeAdmin: () -> Unit
-) {
-    Column(
-        modifier = Modifier
-            .fillMaxWidth()
-            .background(Blanco, shape = RoundedCornerShape(12.dp))
-            .padding(16.dp)
-    ) {
-        Text("Nombre: ${user.name}", color = ColorTexto)
-        Text("Correo: ${user.email}", color = ColorTexto)
-        Text("Rol: ${user.isAdmin}", color = ColorTexto)
-
-        Spacer(modifier = Modifier.height(8.dp))
-
-        Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-            if (!user.isAdmin) {
-                Button(onClick = onDelete) {
-                    Text("Eliminar")
-                }
-            }
-            if (!user.isAdmin) {
-                Button(onClick = onMakeAdmin) {
-                    Text("Hacer Admin")
-                }
-            }
-        }
-    }
-    Spacer(modifier = Modifier.height(10.dp))
 }
