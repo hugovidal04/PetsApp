@@ -16,7 +16,6 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextFieldDefaults
@@ -28,7 +27,6 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -38,6 +36,8 @@ import com.example.petsapp.R
 import com.example.petsapp.presentation.components.ButtonComponent
 import com.example.petsapp.presentation.components.NormalText
 import com.example.petsapp.presentation.components.UserCard
+import com.example.petsapp.ui.theme.Blanco
+import com.example.petsapp.ui.theme.ColorTexto
 import com.example.petsapp.ui.theme.FondoPrincipal
 import com.example.petsapp.ui.theme.PrincipalAdmin
 import com.google.firebase.auth.FirebaseAuth
@@ -80,7 +80,8 @@ fun AdminScreen(
             label = {
                 Text(
                     "Buscar por nombre o correo",
-                    style = MaterialTheme.typography.bodyMedium
+                    fontSize = 14.sp,
+                    color = ColorTexto
                 )
             },
             leadingIcon = {
@@ -91,17 +92,12 @@ fun AdminScreen(
             },
             singleLine = true,
             shape = RoundedCornerShape(12.dp),
-            colors = TextFieldDefaults.outlinedTextFieldColors( // Todo cambiar colores
-                containerColor = Color.White,
-                focusedBorderColor = Color(0xFF6200EE),
-                unfocusedBorderColor = Color.LightGray,
-                focusedTextColor = Color.Black,
-                unfocusedTextColor = Color.Black,
-                cursorColor = Color(0xFF6200EE),
-                focusedLabelColor = Color.Blue,
-                unfocusedLabelColor = Color.Gray,
-                focusedLeadingIconColor = Color(0xFF6200EE),
-                unfocusedLeadingIconColor = Color.Gray
+            colors = TextFieldDefaults.outlinedTextFieldColors(
+                containerColor = Blanco,
+                focusedBorderColor = ColorTexto,
+                unfocusedBorderColor = ColorTexto,
+                focusedTextColor = ColorTexto,
+                unfocusedTextColor = ColorTexto,
             )
         )
 
