@@ -15,3 +15,5 @@ val Secundario = Color(0xFF743916)
 val PrincipalAdmin = Color(0xFF306DDC)
 val FondoPrincipal = Color(0xFFfce4c4)
 val ColorTexto = Color(0xFF000000)
+
+val Blanco = Color(0xFFffffff)

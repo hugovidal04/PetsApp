@@ -39,6 +39,7 @@ import com.example.petsapp.presentation.components.ButtonComponent
 import com.example.petsapp.presentation.components.NormalText
 import com.example.petsapp.presentation.components.UserCard
 import com.example.petsapp.ui.theme.FondoPrincipal
+import com.example.petsapp.ui.theme.PrincipalAdmin
 import com.google.firebase.auth.FirebaseAuth
 
 
@@ -123,14 +124,16 @@ fun AdminScreen(
                     FirebaseAuth.getInstance().signOut()
                     onLogout()
                 },
-                text = stringResource(id = R.string.boton_cerrar_sesion_admin)
+                text = stringResource(id = R.string.boton_cerrar_sesion_admin),
+                backgroundColor = PrincipalAdmin
             )
             Spacer(modifier = Modifier.width(8.dp))
             ButtonComponent(
                 onClick = {
                     // Todo crear usuario
                 },
-                text = stringResource(id = R.string.boton_crear_cuenta_admin)
+                text = stringResource(id = R.string.boton_crear_cuenta_admin),
+                backgroundColor = PrincipalAdmin
             )
         }
     }
