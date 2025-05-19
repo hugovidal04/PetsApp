@@ -106,14 +106,15 @@ fun PasswordField(value: String, onValueChange: (String) -> Unit) {
 fun ButtonComponent(
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
-    text: String
+    text: String,
+    backgroundColor: Color
 ) {
     Button(
         onClick = onClick,
         modifier = modifier
             .height(48.dp),
         colors = ButtonDefaults.buttonColors(
-            containerColor = Color.White,
+            containerColor = backgroundColor,
             disabledContentColor = Color.White
         )
     ) {

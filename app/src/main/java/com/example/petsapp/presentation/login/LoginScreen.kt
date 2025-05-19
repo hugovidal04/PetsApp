@@ -29,11 +29,12 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.petsapp.R
-import com.example.petsapp.presentation.components.ListaImagenes
 import com.example.petsapp.presentation.components.ButtonComponent
+import com.example.petsapp.presentation.components.ListaImagenes
 import com.example.petsapp.presentation.components.NormalText
 import com.example.petsapp.presentation.components.PasswordField
 import com.example.petsapp.presentation.components.TextField
+import com.example.petsapp.ui.theme.Blanco
 import com.example.petsapp.ui.theme.FondoPrincipal
 import com.example.petsapp.ui.theme.Principal
 
@@ -120,7 +121,8 @@ fun LoginScreen(
                                 println("Email o contraseña vacíos")
                             }
                         },
-                        text = stringResource(id = R.string.boton_iniciar_sesion)
+                        text = stringResource(id = R.string.boton_iniciar_sesion),
+                        backgroundColor = Blanco
                     )
                     Spacer(modifier = Modifier.height(4.dp))
                     Row(
