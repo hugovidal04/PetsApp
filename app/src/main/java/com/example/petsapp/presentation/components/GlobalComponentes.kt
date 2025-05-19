@@ -15,7 +15,6 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
@@ -31,7 +30,8 @@ import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.petsapp.model.AppUser
-import com.example.petsapp.ui.theme.FondoPrincipal
+import com.example.petsapp.ui.theme.Blanco
+import com.example.petsapp.ui.theme.ColorTexto
 
 
 @Composable
@@ -131,12 +131,12 @@ fun UserCard(
     Column(
         modifier = Modifier
             .fillMaxWidth()
-            .background(FondoPrincipal, shape = RoundedCornerShape(12.dp))
+            .background(Blanco, shape = RoundedCornerShape(12.dp))
             .padding(16.dp)
     ) {
-        Text("Nombre: ${user.name}", style = MaterialTheme.typography.bodyLarge)
-        Text("Correo: ${user.email}", style = MaterialTheme.typography.bodyMedium)
-        Text("Rol: ${user.isAdmin}")
+        Text("Nombre: ${user.name}", color = ColorTexto)
+        Text("Correo: ${user.email}", color = ColorTexto)
+        Text("Rol: ${user.isAdmin}", color = ColorTexto)
 
         Spacer(modifier = Modifier.height(8.dp))
 
@@ -153,4 +153,5 @@ fun UserCard(
             }
         }
     }
+    Spacer(modifier = Modifier.height(10.dp))
 }
