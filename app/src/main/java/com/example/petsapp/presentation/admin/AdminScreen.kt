@@ -44,6 +44,8 @@ fun AdminScreen(
                 user.email.contains(searchQuery, ignoreCase = true)
     }
 
+    var showCreateDialog by remember { mutableStateOf(false) }
+
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -91,11 +93,27 @@ fun AdminScreen(
             Spacer(modifier = Modifier.width(8.dp))
             ButtonComponent(
                 onClick = {
-                    // Todo crear usuario
+                    showCreateDialog = true
                 },
                 text = stringResource(id = R.string.boton_crear_cuenta_admin),
                 backgroundColor = PrincipalAdmin
             )
+            if (showCreateDialog) {
+                CreateUserDialog(
+                    show = showCreateDialog,
+                    onDismiss = { showCreateDialog = false },
+                    onCreateUser = { name, email, password, adminPassword ->
+                        viewModel.createUserAsAdmin(
+                            name = name,
+                            email = email,
+                            password = password,
+                            adminPassword = adminPassword,
+                            onSuccess = { /* mostrar mensaje de éxito */ },
+                            onFailure = { errorMsg -> println("Error: $errorMsg") }
+                        )
+                    }
+                )
+            }
         }
     }
 }

@@ -3,13 +3,15 @@ package com.example.petsapp.presentation.admin
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import com.example.petsapp.model.AppUser
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 
+
 class AdminViewModel : ViewModel() {
 
-
+    private val auth: FirebaseAuth = FirebaseAuth.getInstance()
     private val db = FirebaseFirestore.getInstance()
     private val _users = MutableStateFlow<List<AppUser>>(emptyList())
     val users: StateFlow<List<AppUser>> = _users
@@ -58,6 +60,70 @@ class AdminViewModel : ViewModel() {
             .update("isAdmin", true)
             .addOnSuccessListener {
                 loadUsers()
+            }
+    }
+
+    fun createUserAsAdmin(
+        name: String,
+        email: String,
+        password: String,
+        adminPassword: String,
+        onSuccess: () -> Unit,
+        onFailure: (String) -> Unit
+    ) {
+        if (name.isBlank() || email.isBlank() || password.length < 6) {
+            onFailure("Nombre, correo o contraseña inválidos.")
+            return
+        }
+
+        val currentUser = auth.currentUser
+
+        auth.createUserWithEmailAndPassword(
+            email,
+            password
+        ) //Al hacer esto se cierra la sesión de admin
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    val newUser = task.result.user
+                    val newUserId = newUser?.uid
+
+                    if (newUserId != null) {
+                        val userMap = hashMapOf(
+                            "uid" to newUserId,
+                            "name" to name,
+                            "email" to email,
+                            "isAdmin" to false,
+                            "acceptedTerms" to true
+                        )
+
+                        db.collection("users").document(newUserId).set(userMap)
+                            .addOnSuccessListener {
+                                currentUser?.email?.let { adminEmail -> //Con let y '?' evitamos poner ifs para tener en cuenta si algo es null
+                                    auth.signOut()
+                                    // Se vuelve a loguear el admin porque firebase no puede tener dos sesiones abiertas
+                                    auth.signInWithEmailAndPassword(
+                                        adminEmail,
+                                        adminPassword
+                                    )
+
+                                        .addOnCompleteListener {
+                                            if (it.isSuccessful) {
+                                                onSuccess()
+                                            } else {
+                                                onFailure("Usuario creado pero error al volver a iniciar sesión.")
+                                            }
+                                        }
+                                }
+                            }
+                            .addOnFailureListener { e ->
+                                onFailure("Error al guardar usuario: ${e.message}")
+                            }
+                    } else {
+                        onFailure("Error al obtener el ID del nuevo usuario.")
+                    }
+                } else {
+                    onFailure("Error al crear usuario: ${task.exception?.message}")
+                }
             }
     }
 }
