@@ -3,10 +3,10 @@ package com.example.petsapp.presentation.admin
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import com.example.petsapp.model.AppUser
-import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import com.google.firebase.auth.FirebaseAuth
 
 
 class AdminViewModel : ViewModel() {
@@ -19,8 +19,8 @@ class AdminViewModel : ViewModel() {
     fun loadUsers() {
         db.collection("users")
             .addSnapshotListener { snapshot, error ->
-                if (error != null) {
-                    Log.e("AdminViewModel", "Error al escuchar cambios en usuarios", error)
+                error?.let {
+                    Log.d("ErrorEsperado", "Error temporal: ${it.message}")
                     return@addSnapshotListener
                 }
 
@@ -40,6 +40,10 @@ class AdminViewModel : ViewModel() {
                         }
                     }
                     _users.value = userList
+                    Log.d("AdminViewModel", "Usuarios cargados:")
+                    userList.forEach {
+                        Log.d("AdminViewModel", "UID: ${it.uid}, nombre: ${it.name}")
+                    }
                 }
             }
     }
@@ -50,6 +54,7 @@ class AdminViewModel : ViewModel() {
     }
 
     fun deleteUser(userId: String) {
+        Log.d("AdminViewModel", "Eliminando usuario con ID: $userId")
         db.collection("users").document(userId).delete().addOnSuccessListener {
             loadUsers()
         }
@@ -78,10 +83,7 @@ class AdminViewModel : ViewModel() {
 
         val currentUser = auth.currentUser
 
-        auth.createUserWithEmailAndPassword(
-            email,
-            password
-        ) //Al hacer esto se cierra la sesión de admin
+        auth.createUserWithEmailAndPassword(email, password) //Al hacer esto se cierra la sesión de admin
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     val newUser = task.result.user
