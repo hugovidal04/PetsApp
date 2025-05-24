@@ -15,3 +15,6 @@ https://developer.android.com/reference/kotlin/androidx/compose/material3/packag
 
 Primeros pasos con la base de datos
 https://firebase.google.com/docs/firestore/quickstart?hl=es
+
+Problemas con el scroll
+https://stackoverflow.com/questions/68164883/how-do-i-create-a-jetpack-compose-column-where-a-middle-child-is-scrollable-but
