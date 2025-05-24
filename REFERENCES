@@ -9,3 +9,6 @@ https://docs.gradle.org/current/userguide/platforms.html
 
 Recorrer una lista de imágenes
 https://developer.android.com/develop/ui/compose/lists?hl=es-419
+
+Parámetro del placeholder
+https://developer.android.com/reference/kotlin/androidx/compose/material3/package-summary#TextField(androidx.compose.ui.Modifier,kotlin.String,kotlin.Function1,kotlin.Boolean,kotlin.Boolean,androidx.compose.ui.text.TextStyle,kotlin.Function0,kotlin.Function0,kotlin.Function0,kotlin.Function0,kotlin.Function0,kotlin.Boolean,androidx.compose.ui.text.input.VisualTransformation,androidx.compose.foundation.text.KeyboardOptions,androidx.compose.foundation.text.KeyboardActions,kotlin.Boolean,kotlin.Int,androidx.compose.foundation.interaction.MutableInteractionSource,androidx.compose.ui.graphics.Shape,androidx.compose.material3.TextFieldColors)
