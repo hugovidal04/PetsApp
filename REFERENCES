@@ -27,3 +27,6 @@ https://firebase.google.com/docs/firestore/manage-data/add-data?hl=es-419
 
 Obtener actualizaciones en tiempo real en Cloud Firestore (addSnapshotListener)
 https://firebase.google.com/docs/firestore/query-data/listen?hl=es-419#kotlin+ktx
+
+Funciones lambdas (it en Kotlin)
+https://kotlinlang.org/docs/lambdas.html#higher-order-functions
