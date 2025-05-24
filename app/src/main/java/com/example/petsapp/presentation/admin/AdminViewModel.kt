@@ -20,7 +20,7 @@ class AdminViewModel : ViewModel() {
         db.collection("users")
             .addSnapshotListener { snapshot, error ->
                 error?.let {
-                    Log.d("ErrorEsperado", "Error temporal: ${it.message}")
+                    Log.d("ErrorEsperado", "Error temporal: ${it.message}") //Capturamos el error temporal
                     return@addSnapshotListener
                 }
 
