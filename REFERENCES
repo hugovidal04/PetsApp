@@ -21,3 +21,6 @@ https://stackoverflow.com/questions/68164883/how-do-i-create-a-jetpack-compose-c
 
 Administrar usuarios en Firebase
 https://firebase.google.com/docs/auth/android/manage-users?hl=es-419#create_a_user
+
+Agregar datos a Cloud Firestore
+https://firebase.google.com/docs/firestore/manage-data/add-data?hl=es-419
