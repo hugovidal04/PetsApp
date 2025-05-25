@@ -120,7 +120,6 @@ fun LoginScreen(
                     ButtonComponent(
                         modifier = Modifier.fillMaxWidth(),
                         onClick = {
-                            if (email.isNotBlank() && password.isNotBlank()) {
                                 viewModel.login(
                                     email = email,
                                     password = password,
@@ -130,9 +129,6 @@ fun LoginScreen(
                                         errorMessage = error
                                     }
                                 )
-                            } else {
-                                errorMessage = "Email o contraseña vacíos"
-                            }
                         },
                         text = stringResource(id = R.string.boton_iniciar_sesion),
                         backgroundColor = Blanco
