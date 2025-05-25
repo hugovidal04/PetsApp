@@ -46,30 +46,27 @@ class SignupViewModel : ViewModel() {
         }
 
         auth.createUserWithEmailAndPassword(email, password)
-            .addOnCompleteListener { task ->
-                if (task.isSuccessful) {
-                    val userId = task.result.user?.uid
-                    if (userId != null) {
-                        val userMap = hashMapOf(
-                            "uid" to userId,
-                            "name" to name,
-                            "email" to email,
-                            "isAdmin" to false,
-                            "acceptedTerms" to true
-                        )
-                        db.collection("users").document(userId).set(userMap)
-                            .addOnSuccessListener {
-                                onSuccess()
-                            }
-                            .addOnFailureListener { e ->
-                                onFailure("Error al guardar datos: ${e.message}")
-                            }
-                    } else {
-                        onFailure("Error al obtener ID del usuario.")
-                    }
-                } else {
-                    onFailure("Error al registrar: ${task.exception?.message}")
+            .addOnSuccessListener { authResult ->
+                val userId = authResult.user?.uid
+                if (userId == null) {
+                    onFailure("Error al obtener ID del usuario.")
+                    return@addOnSuccessListener
                 }
+                val userData = hashMapOf(
+                    "uid" to userId,
+                    "name" to name,
+                    "email" to email,
+                    "isAdmin" to false,
+                    "acceptedTerms" to true
+                )
+                db.collection("users").document(userId).set(userData)
+                    .addOnSuccessListener { onSuccess() }
+                    .addOnFailureListener {
+                        onFailure("Error al guardar datos:")
+                    }
+            }
+            .addOnFailureListener {
+                onFailure("Error al registrar:")
             }
     }
 }

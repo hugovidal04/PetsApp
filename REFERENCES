@@ -16,8 +16,8 @@ https://developer.android.com/reference/kotlin/androidx/compose/material3/packag
 Primeros pasos con la base de datos
 https://firebase.google.com/docs/firestore/quickstart?hl=es
 
-Problemas con el scroll
-https://stackoverflow.com/questions/68164883/how-do-i-create-a-jetpack-compose-column-where-a-middle-child-is-scrollable-but
+Returns en las lambdas
+https://kotlinlang.org/docs/returns.html
 
 Administrar usuarios en Firebase
 https://firebase.google.com/docs/auth/android/manage-users?hl=es-419#create_a_user
