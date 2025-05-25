@@ -100,6 +100,11 @@ class AdminViewModel : ViewModel() {
                 onFailure("La contraseña debe tener al menos 6 caracteres.")
                 return
             }
+
+            adminPassword.isBlank() -> {
+                onFailure("La contraseña de admin no puede estar vacía")
+                return
+            }
         }
 
         val adminEmail = auth.currentUser?.email
