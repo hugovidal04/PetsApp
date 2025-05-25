@@ -30,17 +30,17 @@ class LoginViewModel : ViewModel() {
                                         onSuccessUser()
                                     }
                                 } else {
-                                    onFailure("El documento del usuario no existe.")
+                                    onFailure("El documento del usuario no existe")
                                 }
                             }
                             .addOnFailureListener { e ->
-                                onFailure("Error al obtener datos del usuario: ${e.message}")
+                                onFailure("Error al obtener datos del usuario")
                             }
                     } else {
-                        onFailure("No se pudo obtener el ID del usuario.")
+                        onFailure("No se pudo obtener el ID del usuario")
                     }
                 } else {
-                    onFailure("Error al iniciar sesión: ${task.exception?.message}")
+                    onFailure("El correo o la contraseña no son correctos")
                 }
             }
     }
