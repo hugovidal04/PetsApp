@@ -20,11 +20,13 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 
 @Composable
 fun CreateUserDialog(
@@ -50,19 +52,34 @@ fun CreateUserDialog(
                 OutlinedTextField(
                     value = name,
                     onValueChange = { name = it },
-                    label = { Text("Nombre") },
+                    label = {
+                        Text(
+                            "Nombre",
+                            style = TextStyle(fontSize = 16.sp)
+                        )
+                    },
                     modifier = Modifier.fillMaxWidth()
                 )
                 OutlinedTextField(
                     value = email,
                     onValueChange = { email = it },
-                    label = { Text("Email") },
+                    label = {
+                        Text(
+                            "Email",
+                            style = TextStyle(fontSize = 16.sp)
+                        )
+                    },
                     modifier = Modifier.fillMaxWidth()
                 )
                 OutlinedTextField(
                     value = password,
                     onValueChange = { password = it },
-                    label = { Text("Contraseña") },
+                    label = {
+                        Text(
+                            "Contraseña",
+                            style = TextStyle(fontSize = 16.sp)
+                        )
+                    },
                     modifier = Modifier.fillMaxWidth(),
                     visualTransformation = if (passwordVisible) VisualTransformation.None else PasswordVisualTransformation(),
                     trailingIcon = {
@@ -77,7 +94,12 @@ fun CreateUserDialog(
                 OutlinedTextField(
                     value = adminPassword,
                     onValueChange = { adminPassword = it },
-                    label = { Text("Tu contraseña (admin)") },
+                    label = {
+                        Text(
+                            "Tu contraseña (admin)",
+                            style = TextStyle(fontSize = 16.sp)
+                        )
+                    },
                     modifier = Modifier.fillMaxWidth(),
                     visualTransformation = if (adminPasswordVisible) VisualTransformation.None else PasswordVisualTransformation(),
                     trailingIcon = {
