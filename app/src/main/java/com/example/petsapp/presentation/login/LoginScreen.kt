@@ -120,15 +120,15 @@ fun LoginScreen(
                     ButtonComponent(
                         modifier = Modifier.fillMaxWidth(),
                         onClick = {
-                                viewModel.login(
-                                    email = email,
-                                    password = password,
-                                    onSuccessAdmin = navigateToAdmin,
-                                    onSuccessUser = navigateToHome,
-                                    onFailure = { error ->
-                                        errorMessage = error
-                                    }
-                                )
+                            viewModel.login(
+                                email = email,
+                                password = password,
+                                onSuccessAdmin = navigateToAdmin,
+                                onSuccessUser = navigateToHome,
+                                onFailure = { error ->
+                                    errorMessage = error
+                                }
+                            )
                         },
                         text = stringResource(id = R.string.boton_iniciar_sesion),
                         backgroundColor = Blanco
