@@ -1,5 +1,6 @@
 package com.example.petsapp.presentation.signup
 
+import android.util.Patterns
 import androidx.lifecycle.ViewModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -26,6 +27,11 @@ class SignupViewModel : ViewModel() {
 
             email.isBlank() -> {
                 onFailure("El correo no puede estar vacío.")
+                return
+            }
+
+            !Patterns.EMAIL_ADDRESS.matcher(email).matches() -> {
+                onFailure("El correo no tiene un formato válido.")
                 return
             }
 
