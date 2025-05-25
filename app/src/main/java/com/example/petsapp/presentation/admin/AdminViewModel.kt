@@ -1,12 +1,13 @@
 package com.example.petsapp.presentation.admin
 
 import android.util.Log
+import android.util.Patterns
 import androidx.lifecycle.ViewModel
 import com.example.petsapp.model.AppUser
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
-import com.google.firebase.auth.FirebaseAuth
 
 
 class AdminViewModel : ViewModel() {
@@ -20,7 +21,10 @@ class AdminViewModel : ViewModel() {
         db.collection("users")
             .addSnapshotListener { snapshot, error ->
                 error?.let {
-                    Log.d("ErrorEsperado", "Error temporal: ${it.message}") //Capturamos el error temporal
+                    Log.d(
+                        "ErrorEsperado",
+                        "Error temporal: ${it.message}"
+                    ) //Capturamos el error temporal
                     return@addSnapshotListener
                 }
 
@@ -76,56 +80,58 @@ class AdminViewModel : ViewModel() {
         onSuccess: () -> Unit,
         onFailure: (String) -> Unit
     ) {
-        if (name.isBlank() || email.isBlank() || password.length < 6) {
-            onFailure("Nombre, correo o contraseña inválidos.")
+        when {
+            name.isBlank() -> {
+                onFailure("El nombre no puede estar vacío.")
+                return
+            }
+
+            email.isBlank() -> {
+                onFailure("El correo no puede estar vacío.")
+                return
+            }
+
+            !Patterns.EMAIL_ADDRESS.matcher(email).matches() -> {
+                onFailure("El correo no tiene un formato válido.")
+                return
+            }
+
+            password.length < 6 -> {
+                onFailure("La contraseña debe tener al menos 6 caracteres.")
+                return
+            }
+        }
+
+        val adminEmail = auth.currentUser?.email
+        if (adminEmail == null) {
+            onFailure("No se puede obtener el correo del administrador.")
             return
         }
 
-        val currentUser = auth.currentUser
+        auth.createUserWithEmailAndPassword(email, password)
+            .addOnSuccessListener { result ->
+                val userId = result.user?.uid ?: ""
+                val userMap = mapOf(
+                    "uid" to userId,
+                    "name" to name,
+                    "email" to email,
+                    "isAdmin" to false,
+                    "acceptedTerms" to true
+                )
 
-        auth.createUserWithEmailAndPassword(email, password) //Al hacer esto se cierra la sesión de admin
-            .addOnCompleteListener { task ->
-                if (task.isSuccessful) {
-                    val newUser = task.result.user
-                    val newUserId = newUser?.uid
-
-                    if (newUserId != null) {
-                        val userMap = hashMapOf(
-                            "uid" to newUserId,
-                            "name" to name,
-                            "email" to email,
-                            "isAdmin" to false,
-                            "acceptedTerms" to true
-                        )
-
-                        db.collection("users").document(newUserId).set(userMap)
-                            .addOnSuccessListener {
-                                currentUser?.email?.let { adminEmail -> //Con let y '?' evitamos poner ifs para tener en cuenta si algo es null
-                                    auth.signOut()
-                                    // Se vuelve a loguear el admin porque firebase no puede tener dos sesiones abiertas
-                                    auth.signInWithEmailAndPassword(
-                                        adminEmail,
-                                        adminPassword
-                                    )
-
-                                        .addOnCompleteListener {
-                                            if (it.isSuccessful) {
-                                                onSuccess()
-                                            } else {
-                                                onFailure("Usuario creado pero error al volver a iniciar sesión.")
-                                            }
-                                        }
-                                }
-                            }
-                            .addOnFailureListener { e ->
-                                onFailure("Error al guardar usuario: ${e.message}")
-                            }
-                    } else {
-                        onFailure("Error al obtener el ID del nuevo usuario.")
+                db.collection("users").document(userId).set(userMap)
+                    .addOnSuccessListener {
+                        auth.signOut()
+                        auth.signInWithEmailAndPassword(adminEmail, adminPassword)
+                            .addOnSuccessListener { onSuccess() }
+                            .addOnFailureListener { onFailure("Usuario creado, pero error al volver a iniciar sesión.") }
                     }
-                } else {
-                    onFailure("Error al crear usuario: ${task.exception?.message}")
-                }
+                    .addOnFailureListener {
+                        onFailure("Error al guardar datos:")
+                    }
+            }
+            .addOnFailureListener {
+                onFailure("Error al crear usuario:")
             }
     }
 }
