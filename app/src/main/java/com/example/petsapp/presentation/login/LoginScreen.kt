@@ -48,6 +48,7 @@ fun LoginScreen(
 
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
+    var errorMessage by remember { mutableStateOf("") }
 
     Box(
         modifier = Modifier
@@ -105,6 +106,14 @@ fun LoginScreen(
                         )
                         PasswordField(value = password, onValueChange = { password = it })
                     }
+                    if (errorMessage.isNotEmpty()) {
+                        Text(
+                            text = errorMessage,
+                            color = androidx.compose.ui.graphics.Color.Red,
+                            textAlign = TextAlign.Center,
+                            modifier = Modifier.fillMaxWidth()
+                        )
+                    }
                     //Spacer(modifier = Modifier.height(4.dp))
                     ButtonComponent(
                         modifier = Modifier.fillMaxWidth(),
@@ -115,10 +124,12 @@ fun LoginScreen(
                                     password = password,
                                     onSuccessAdmin = navigateToAdmin,
                                     onSuccessUser = navigateToHome,
-                                    onFailure = { errorMsg -> println(errorMsg) }
+                                    onFailure = { error ->
+                                        errorMessage = error
+                                    }
                                 )
                             } else {
-                                println("Email o contraseña vacíos")
+                                errorMessage = "Email o contraseña vacíos"
                             }
                         },
                         text = stringResource(id = R.string.boton_iniciar_sesion),
