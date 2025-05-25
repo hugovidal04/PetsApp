@@ -15,6 +15,19 @@ class LoginViewModel : ViewModel() {
         onSuccessUser: () -> Unit,
         onFailure: (String) -> Unit = {}
     ) {
+
+        when {
+            email.isBlank() -> {
+                onFailure("El email no puede estar vacío")
+                return
+            }
+
+            password.isBlank() -> {
+                onFailure("La contraseña no puede estar vacía")
+                return
+            }
+        }
+
         auth.signInWithEmailAndPassword(email, password)
             .addOnSuccessListener {
                 val userId = auth.currentUser?.uid
