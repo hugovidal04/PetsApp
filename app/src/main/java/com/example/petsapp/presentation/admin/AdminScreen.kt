@@ -100,16 +100,17 @@ fun AdminScreen(
             )
             if (showCreateDialog) {
                 CreateUserDialog(
-                    show = showCreateDialog,
                     onDismiss = { showCreateDialog = false },
-                    onCreateUser = { name, email, password, adminPassword ->
+                    onCreateUser = { name, email, password, adminPassword, onFailure ->
                         viewModel.createUserAsAdmin(
                             name = name,
                             email = email,
                             password = password,
                             adminPassword = adminPassword,
-                            onSuccess = { /* mostrar mensaje de éxito */ },
-                            onFailure = { errorMsg -> println("Error: $errorMsg") }
+                            onSuccess = { showCreateDialog = false },
+                            onFailure = { error ->
+                                onFailure(error)
+                            }
                         )
                     }
                 )
