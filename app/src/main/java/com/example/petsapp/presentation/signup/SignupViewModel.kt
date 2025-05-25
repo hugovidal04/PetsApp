@@ -66,7 +66,9 @@ class SignupViewModel : ViewModel() {
                     "acceptedTerms" to true
                 )
                 db.collection("users").document(userId).set(userData)
-                    .addOnSuccessListener { onSuccess() }
+                    .addOnSuccessListener {
+                        onSuccess()
+                    }
                     .addOnFailureListener {
                         onFailure("Error al guardar datos:")
                     }
