@@ -1,7 +1,6 @@
 package com.example.petsapp.presentation.components
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -63,7 +62,6 @@ import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
-import com.example.petsapp.ui.theme.Principal
 import kotlinx.coroutines.launch
 
 
@@ -187,8 +185,8 @@ fun AppDrawer(
         drawerContent = {
             ModalDrawerSheet(
                 modifier = Modifier
-                    .width(280.dp)
-                    .background(Principal)
+                    .width(280.dp),
+                //drawerContainerColor = FondoPrincipal
             ) {
                 Column(
                     modifier = Modifier
@@ -204,7 +202,6 @@ fun AppDrawer(
                     )
                     HorizontalDivider()
 
-                    // Sección Mascotas
                     Text(
                         "Mascotas",
                         modifier = Modifier.padding(16.dp),
@@ -229,6 +226,24 @@ fun AppDrawer(
                         }
                     )
                     NavigationDrawerItem(
+                        label = { Text("Alimentación") },
+                        selected = currentRoute == "alimentacion",
+                        icon = { Icon(Icons.AutoMirrored.Outlined.LibraryBooks, null) },
+                        onClick = {
+                            scope.launch { drawerState.close() }
+                            if (currentRoute != "alimentacion") navController.navigate("alimentacion")
+                        }
+                    )
+                    NavigationDrawerItem(
+                        label = { Text("Actividad física") },
+                        selected = currentRoute == "actividad_fisica",
+                        icon = { Icon(Icons.AutoMirrored.Outlined.LibraryBooks, null) },
+                        onClick = {
+                            scope.launch { drawerState.close() }
+                            if (currentRoute != "actividad_fisica") navController.navigate("actividad_fisica")
+                        }
+                    )
+                    NavigationDrawerItem(
                         label = { Text("Diario") },
                         selected = currentRoute == "diario",
                         icon = { Icon(Icons.AutoMirrored.Outlined.LibraryBooks, null) },
@@ -240,7 +255,6 @@ fun AppDrawer(
 
                     HorizontalDivider(Modifier.padding(vertical = 8.dp))
 
-                    // Sección Otros
                     Text(
                         "Otros",
                         modifier = Modifier.padding(16.dp),
@@ -290,7 +304,7 @@ fun AppDrawer(
             modifier = Modifier.fillMaxSize(),
             topBar = {
                 TopAppBar(
-                    title = { Text(getTitleByRoute(currentRoute)) },
+                    title = { Text("PetsApp") },
                     navigationIcon = {
                         IconButton(onClick = {
                             scope.launch {
@@ -308,17 +322,5 @@ fun AppDrawer(
                 content()
             }
         }
-    }
-}
-
-private fun getTitleByRoute(route: String): String {
-    return when (route) {
-        "home" -> "Inicio"
-        "pets" -> "Mis Mascotas"
-        "calendario" -> "Calendario"
-        "diario" -> "Diario"
-        "mapa" -> "Mapa"
-        "configuracion" -> "Configuración"
-        else -> "PetsApp"
     }
 }
