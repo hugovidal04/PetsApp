@@ -8,6 +8,7 @@ import com.example.petsapp.presentation.admin.AdminScreen
 import com.example.petsapp.presentation.home.HomeScreen
 import com.example.petsapp.presentation.initial.InitialScreen
 import com.example.petsapp.presentation.login.LoginScreen
+import com.example.petsapp.presentation.pets.PetsScreen
 import com.example.petsapp.presentation.signup.SingupScreen
 
 @Composable
@@ -32,13 +33,34 @@ fun NavigationApp(navHostController: NavHostController) {
                 navigateToHome = { navHostController.navigate("home") }
             )
         }
-        composable("home") {
-            HomeScreen()
-        }
         composable("admin") {
             AdminScreen(
                 onLogout = { navHostController.navigate("initial") }
             )
+        }
+        composable("home") {
+            HomeScreen(navHostController)
+        }
+        composable("pets") {
+            PetsScreen(navHostController)
+        }
+        composable("calendar") {
+
+        }
+        composable("feeding") {
+
+        }
+        composable("physical_activity") {
+
+        }
+        composable("diary") {
+
+        }
+        composable("map") {
+
+        }
+        composable("configuration") {
+
         }
     }
 }
