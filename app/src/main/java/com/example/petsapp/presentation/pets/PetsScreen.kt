@@ -1,12 +1,16 @@
 package com.example.petsapp.presentation.pets
 
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Button
-import androidx.compose.material3.MaterialTheme
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -17,12 +21,18 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import com.example.petsapp.model.Pet
 import com.example.petsapp.presentation.components.AppDrawer
+import com.example.petsapp.presentation.components.ButtonComponent
+import com.example.petsapp.ui.theme.ColorTexto
+import com.example.petsapp.ui.theme.FondoPrincipal
+import com.example.petsapp.ui.theme.PrincipalAdmin
 
 @Composable
 fun PetsScreen(
@@ -40,8 +50,14 @@ fun PetsScreen(
     }
 
     AppDrawer(navController = navController, currentRoute = "pets") {
-        Column(modifier = Modifier.padding(16.dp)) {
-            Text("Mis Mascotas", style = MaterialTheme.typography.titleLarge)
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .background(FondoPrincipal)
+                .padding(16.dp)
+                .verticalScroll(rememberScrollState()),
+        ) {
+            Text("Mis Mascotas", color = ColorTexto, fontWeight = FontWeight.Bold, fontSize = 24.sp)
 
             Spacer(Modifier.height(8.dp))
 
@@ -65,8 +81,17 @@ fun PetsScreen(
 
             Spacer(Modifier.height(16.dp))
 
-            Button(onClick = { showCreateDialog = true }) {
-                Text("Añadir Mascota")
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.Center
+            ) {
+                ButtonComponent(
+                    onClick = { showCreateDialog = true },
+                    text = "Añadir mascota",
+                    backgroundColor = PrincipalAdmin
+                )
+
+
             }
 
             if (errorMessage.isNotEmpty()) {

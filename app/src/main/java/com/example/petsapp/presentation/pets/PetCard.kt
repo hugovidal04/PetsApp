@@ -22,6 +22,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.example.petsapp.model.Pet
+import com.example.petsapp.ui.theme.Blanco
+import com.example.petsapp.ui.theme.ColorTexto
 
 @Composable
 fun PetCard(
@@ -34,7 +36,7 @@ fun PetCard(
             .fillMaxWidth()
             .padding(vertical = 8.dp),
         elevation = CardDefaults.cardElevation(4.dp),
-        colors = CardDefaults.cardColors(containerColor = Color(0xFFE0F7FA))
+        colors = CardDefaults.cardColors(containerColor = Blanco, contentColor = ColorTexto)
     ) {
         Column(modifier = Modifier.padding(16.dp)) {
             Text("Nombre: ${pet.name}", fontWeight = FontWeight.Bold)
