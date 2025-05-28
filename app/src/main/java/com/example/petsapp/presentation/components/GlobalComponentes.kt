@@ -41,6 +41,7 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.material3.rememberDrawerState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -62,6 +63,7 @@ import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
+import com.example.petsapp.ui.theme.ColorTexto
 import kotlinx.coroutines.launch
 
 
@@ -301,9 +303,13 @@ fun AppDrawer(
         }
     ) {
         Scaffold(
-            modifier = Modifier.fillMaxSize(),
             topBar = {
                 TopAppBar(
+                    colors = TopAppBarDefaults.topAppBarColors(
+                        containerColor = ColorTexto,
+                        titleContentColor = Color.White,
+                        navigationIconContentColor = Color.White
+                    ),
                     title = { Text("PetsApp") },
                     navigationIcon = {
                         IconButton(onClick = {
