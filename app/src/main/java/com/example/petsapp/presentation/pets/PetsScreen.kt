@@ -30,7 +30,8 @@ fun PetsScreen(
     viewModel: PetsViewModel = viewModel()
 ) {
     val pets by viewModel.pets.collectAsState()
-    var showDialog by remember { mutableStateOf(false) }
+    var showCreateDialog by remember { mutableStateOf(false) }
+    var showEditDialog by remember { mutableStateOf(false) }
     var editingPet by remember { mutableStateOf<Pet?>(null) }
     var errorMessage by remember { mutableStateOf("") }
 
@@ -49,7 +50,7 @@ fun PetsScreen(
                     pet = pet,
                     onEdit = {
                         editingPet = pet
-                        showDialog = true
+                        showEditDialog = true
                     },
                     onDelete = {
                         viewModel.deletePet(pet.id) { error ->
@@ -64,10 +65,7 @@ fun PetsScreen(
 
             Spacer(Modifier.height(16.dp))
 
-            Button(onClick = {
-                editingPet = null
-                showDialog = true
-            }) {
+            Button(onClick = { showCreateDialog = true }) {
                 Text("Añadir Mascota")
             }
 
@@ -84,20 +82,38 @@ fun PetsScreen(
         }
     }
 
-    if (showDialog) {
-        PetDialog(
-            initialPet = editingPet,
-            onDismiss = { showDialog = false; errorMessage = "" },
+    if (showCreateDialog) {
+        CreatePetDialog(
+            onDismiss = { showCreateDialog = false; errorMessage = "" },
             onSavePet = { pet ->
                 viewModel.addOrUpdatePet(pet) { error ->
                     if (error.isNotEmpty()) {
                         errorMessage = error
                     } else {
-                        showDialog = false
+                        showCreateDialog = false
                         errorMessage = ""
                     }
                 }
             }
         )
+    }
+
+    if (showEditDialog) {
+        editingPet?.let { pet ->
+            EditPetDialog(
+                pet = pet,
+                onDismiss = { showEditDialog = false; errorMessage = "" },
+                onSavePet = { updatedPet ->
+                    viewModel.addOrUpdatePet(updatedPet) { error ->
+                        if (error.isNotEmpty()) {
+                            errorMessage = error
+                        } else {
+                            showEditDialog = false
+                            errorMessage = ""
+                        }
+                    }
+                }
+            )
+        }
     }
 }
