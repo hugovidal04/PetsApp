@@ -18,21 +18,21 @@ import androidx.compose.ui.unit.dp
 import com.example.petsapp.model.Pet
 
 @Composable
-fun PetDialog(
-    initialPet: Pet? = null,
+fun EditPetDialog(
+    pet: Pet,
     onDismiss: () -> Unit,
     onSavePet: (Pet) -> Unit
 ) {
-    var name by remember { mutableStateOf(initialPet?.name ?: "") }
-    var species by remember { mutableStateOf(initialPet?.species ?: "") }
-    var breed by remember { mutableStateOf(initialPet?.breed ?: "") }
-    var birthDate by remember { mutableStateOf(initialPet?.birthDate ?: "") }
-    var gender by remember { mutableStateOf(initialPet?.gender ?: "") }
+    var name by remember { mutableStateOf(pet.name) }
+    var species by remember { mutableStateOf(pet.species) }
+    var breed by remember { mutableStateOf(pet.breed) }
+    var birthDate by remember { mutableStateOf(pet.birthDate) }
+    var gender by remember { mutableStateOf(pet.gender) }
     var errorMessage by remember { mutableStateOf("") }
 
     AlertDialog(
         onDismissRequest = onDismiss,
-        title = { Text(if (initialPet == null) "Nueva Mascota" else "Editar Mascota") },
+        title = { Text("Editar Mascota") },
         text = {
             Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
                 OutlinedTextField(
@@ -75,20 +75,14 @@ fun PetDialog(
                 if (name.isBlank() || species.isBlank()) {
                     errorMessage = "Completa al menos nombre y especie"
                 } else {
-                    val pet = initialPet?.copy(
-                        name = name,
-                        species = species,
-                        breed = breed,
-                        birthDate = birthDate,
-                        gender = gender
-                    ) ?: Pet(
+                    val updatedPet = pet.copy(
                         name = name,
                         species = species,
                         breed = breed,
                         birthDate = birthDate,
                         gender = gender
                     )
-                    onSavePet(pet)
+                    onSavePet(updatedPet)
                 }
             }) {
                 Text("Guardar")
