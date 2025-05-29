@@ -1,4 +1,4 @@
-package com.example.petsapp.calendar
+package com.example.petsapp.presentation.calendar
 
 import androidx.lifecycle.ViewModel
 import com.example.petsapp.model.PetEvent
