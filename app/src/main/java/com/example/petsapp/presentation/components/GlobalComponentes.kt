@@ -220,11 +220,11 @@ fun AppDrawer(
                     )
                     NavigationDrawerItem(
                         label = { Text("Calendario") },
-                        selected = currentRoute == "calendario",
+                        selected = currentRoute == "calendar",
                         icon = { Icon(Icons.Outlined.CalendarToday, null) },
                         onClick = {
                             scope.launch { drawerState.close() }
-                            if (currentRoute != "calendario") navController.navigate("calendario")
+                            if (currentRoute != "calendar") navController.navigate("calendar")
                         }
                     )
                     NavigationDrawerItem(
