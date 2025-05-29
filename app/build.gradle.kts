@@ -71,6 +71,9 @@ dependencies {
     //Para la base de datos (cloud firestore)
     implementation(libs.firebase.firestore)
 
+    //Para el calendario
+    implementation (libs.composecalendar)
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
