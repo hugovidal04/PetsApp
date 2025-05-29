@@ -42,7 +42,7 @@ fun NavigationApp(navHostController: NavHostController) {
             PetsScreen(navHostController)
         }
         composable("calendar") {
-            CalendarScreen(navHostController)
+            CalendarScreen(navController = navHostController)
         }
         composable("feeding") {
 
