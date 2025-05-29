@@ -1,4 +1,4 @@
-package com.example.petsapp.calendar
+package com.example.petsapp.presentation.calendar
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
