@@ -6,6 +6,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.example.petsapp.presentation.calendar.CalendarScreen
 import com.example.petsapp.presentation.admin.AdminScreen
+import com.example.petsapp.presentation.feeding.FeedingScreen
 import com.example.petsapp.presentation.initial.InitialScreen
 import com.example.petsapp.presentation.login.LoginScreen
 import com.example.petsapp.presentation.pets.PetsScreen
@@ -45,7 +46,7 @@ fun NavigationApp(navHostController: NavHostController) {
             CalendarScreen(navController = navHostController)
         }
         composable("feeding") {
-
+            FeedingScreen(navController = navHostController)
         }
         composable("physical_activity") {
 
