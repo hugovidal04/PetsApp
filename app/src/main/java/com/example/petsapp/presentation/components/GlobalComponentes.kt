@@ -247,11 +247,11 @@ fun AppDrawer(
                     )
                     NavigationDrawerItem(
                         label = { Text("Diario") },
-                        selected = currentRoute == "diario",
+                        selected = currentRoute == "diary",
                         icon = { Icon(Icons.AutoMirrored.Outlined.LibraryBooks, null) },
                         onClick = {
                             scope.launch { drawerState.close() }
-                            if (currentRoute != "diario") navController.navigate("diario")
+                            if (currentRoute != "diary") navController.navigate("diary")
                         }
                     )
 
