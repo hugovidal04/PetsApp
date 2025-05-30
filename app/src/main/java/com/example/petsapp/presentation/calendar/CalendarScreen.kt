@@ -58,7 +58,7 @@ fun CalendarScreen(
                 .background(FondoPrincipal)
                 .padding(16.dp)
         ) {
-            Text("Calendario de Eventos", fontWeight = FontWeight.Bold, fontSize = 22.sp)
+            Text("Calendario de Eventos", fontWeight = FontWeight.Bold, fontSize = 22.sp, color = ColorTexto)
 
             Spacer(Modifier.height(12.dp))
 
@@ -75,7 +75,8 @@ fun CalendarScreen(
                             .clickable {
                                 selectedDate = date
                                 showDialog = true
-                            }
+                            },
+                        color = ColorTexto
                     )
                 }
             )
@@ -83,7 +84,7 @@ fun CalendarScreen(
             Spacer(Modifier.height(16.dp))
 
             if (filteredEvents.isEmpty()) {
-                Text("No hay eventos para esta fecha.")
+                Text("No hay eventos para esta fecha.", color = ColorTexto)
             } else {
                 filteredEvents.forEach { event ->
                     Text("- Nombre de mascotas: ${event.petName} Título: ${event.title} Descripción: ${event.description} Evento: (${event.type})", fontSize = 16.sp, color = ColorTexto)
