@@ -238,11 +238,11 @@ fun AppDrawer(
                     )
                     NavigationDrawerItem(
                         label = { Text("Actividad física") },
-                        selected = currentRoute == "actividad_fisica",
+                        selected = currentRoute == "physical_activity",
                         icon = { Icon(Icons.AutoMirrored.Outlined.LibraryBooks, null) },
                         onClick = {
                             scope.launch { drawerState.close() }
-                            if (currentRoute != "actividad_fisica") navController.navigate("actividad_fisica")
+                            if (currentRoute != "physical_activity") navController.navigate("physical_activity")
                         }
                     )
                     NavigationDrawerItem(
