@@ -75,7 +75,6 @@ class MainActivity : ComponentActivity() {
         val userId = FirebaseAuth.getInstance().currentUser?.uid ?: return
         val db = FirebaseFirestore.getInstance()
 
-        // 1) Calculamos "hoy" con formato yyyy-MM-dd
         val today = Calendar.getInstance()
         val sdf = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
         val todayStr = sdf.format(today.time)
@@ -88,7 +87,6 @@ class MainActivity : ComponentActivity() {
                 snapshot.documents.forEach { doc ->
                     val dateString = doc.getString("date") ?: return@forEach
 
-                    // 2) Filtramos: solo notificamos si fecha >= hoy
                     if (dateString < todayStr) return@forEach
 
                     val petName = doc.getString("petName") ?: "Desconocida"
