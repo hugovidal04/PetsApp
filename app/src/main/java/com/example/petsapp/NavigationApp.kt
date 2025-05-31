@@ -11,6 +11,7 @@ import com.example.petsapp.presentation.diary.DiaryScreen
 import com.example.petsapp.presentation.feeding.FeedingScreen
 import com.example.petsapp.presentation.initial.InitialScreen
 import com.example.petsapp.presentation.login.LoginScreen
+import com.example.petsapp.presentation.map.MapScreen
 import com.example.petsapp.presentation.pets.PetsScreen
 import com.example.petsapp.presentation.signup.SingupScreen
 
@@ -57,7 +58,7 @@ fun NavigationApp(navHostController: NavHostController) {
             DiaryScreen(navController = navHostController)
         }
         composable("map") {
-
+            MapScreen(navController = navHostController)
         }
         composable("configuration") {
 
