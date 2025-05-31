@@ -273,11 +273,11 @@ fun AppDrawer(
                     )
                     NavigationDrawerItem(
                         label = { Text("Configuración") },
-                        selected = currentRoute == "configuracion",
+                        selected = currentRoute == "settings",
                         icon = { Icon(Icons.Outlined.Settings, null) },
                         onClick = {
                             scope.launch { drawerState.close() }
-                            if (currentRoute != "configuracion") navController.navigate("configuracion")
+                            if (currentRoute != "settings") navController.navigate("settings")
                         }
                     )
 
