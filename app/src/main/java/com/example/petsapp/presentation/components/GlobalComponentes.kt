@@ -264,11 +264,11 @@ fun AppDrawer(
                     )
                     NavigationDrawerItem(
                         label = { Text("Mapa") },
-                        selected = currentRoute == "mapa",
+                        selected = currentRoute == "map",
                         icon = { Icon(Icons.Outlined.Map, null) },
                         onClick = {
                             scope.launch { drawerState.close() }
-                            if (currentRoute != "mapa") navController.navigate("mapa")
+                            if (currentRoute != "map") navController.navigate("map")
                         }
                     )
                     NavigationDrawerItem(
