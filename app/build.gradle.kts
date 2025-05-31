@@ -76,6 +76,11 @@ dependencies {
     //Para el calendario
     implementation (libs.composecalendar)
 
+    //Mapa
+    implementation (libs.osmdroid.android)
+    implementation (libs.play.services.location)
+    implementation (libs.accompanist.permissions)
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
