@@ -15,16 +15,16 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.petsapp.R
 import com.example.petsapp.presentation.components.NormalText
 import com.example.petsapp.ui.theme.Principal
 
-@Preview
 @Composable
-fun InitialScreen(navigateToLogin: () -> Unit = {}) {
+fun InitialScreen(
+    navigateToLogin: () -> Unit = {}
+) {
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -38,17 +38,21 @@ fun InitialScreen(navigateToLogin: () -> Unit = {}) {
                 .fillMaxWidth()
                 .height(200.dp),
             painter = painterResource(id = R.drawable.yorkshire_inicio),
-            contentDescription = ""
+            contentDescription = null
         )
         Spacer(modifier = Modifier.weight(1f))
         NormalText(
-            text = stringResource(id = R.string.bienvenida_inicial), fontSize = 40.sp,
-            color = Color.Black, fontWeight = FontWeight.Bold
+            text = stringResource(id = R.string.bienvenida_inicial),
+            fontSize = 40.sp,
+            color = Color.Black,
+            fontWeight = FontWeight.Bold
         )
         Spacer(modifier = Modifier.weight(1f))
         NormalText(
-            text = stringResource(id = R.string.llevar_registro), fontSize = 24.sp,
-            color = Color.Black, fontWeight = FontWeight.Bold
+            text = stringResource(id = R.string.llevar_registro),
+            fontSize = 24.sp,
+            color = Color.Black,
+            fontWeight = FontWeight.Bold
         )
         Spacer(modifier = Modifier.weight(1f))
         Arrow(onNavigateToLogin = navigateToLogin)
