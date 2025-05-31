@@ -36,3 +36,15 @@ https://developer.android.com/develop/ui/compose/components/drawer?hl=es-419
 
 Scaffold
 https://developer.android.com/develop/ui/compose/components/scaffold?hl=es-419
+
+API de OpenStreetMap
+https://wiki.openstreetmap.org/wiki/Overpass_API
+
+Guía de OpenStreetMap
+https://wiki.openstreetmap.org/wiki/Overpass_API/Overpass_QL
+
+Para realizar pruebas de forma visual de búsqueda en el mapa
+https://overpass-turbo.eu/
+
+Para mostrar los datos en Android
+https://github.com/osmdroid/osmdroid
