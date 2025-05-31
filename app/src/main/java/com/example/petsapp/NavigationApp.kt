@@ -13,6 +13,7 @@ import com.example.petsapp.presentation.initial.InitialScreen
 import com.example.petsapp.presentation.login.LoginScreen
 import com.example.petsapp.presentation.map.MapScreen
 import com.example.petsapp.presentation.pets.PetsScreen
+import com.example.petsapp.presentation.settings.SettingsScreen
 import com.example.petsapp.presentation.signup.SingupScreen
 
 @Composable
@@ -60,8 +61,8 @@ fun NavigationApp(navHostController: NavHostController) {
         composable("map") {
             MapScreen(navController = navHostController)
         }
-        composable("configuration") {
-
+        composable("settings") {
+            SettingsScreen(navController = navHostController)
         }
     }
 }
