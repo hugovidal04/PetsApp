@@ -60,7 +60,7 @@ fun PhysicalActivityScreen(
                     PhysicalActivityCard(
                         entry = activity,
                         onDelete = {
-                            viewModel.deleteActivity(activity.id) { /* opcional callback */ }
+                            viewModel.deleteActivity(activity.id) {}
                         }
                     )
                 }
