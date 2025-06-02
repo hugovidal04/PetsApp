@@ -64,7 +64,7 @@ fun DiaryScreen(
                     DiaryCard(
                         entry = entry,
                         onDelete = {
-                            viewModel.deleteDiaryEntry(entry.id) { /* Puedes mostrar feedback aquí */ }
+                            viewModel.deleteDiaryEntry(entry.id) {}
                         }
                     )
                 }
