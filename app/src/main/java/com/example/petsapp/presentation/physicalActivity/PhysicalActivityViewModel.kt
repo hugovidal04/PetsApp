@@ -1,4 +1,4 @@
-package com.example.petsapp.presentation.PhysicalActivity
+package com.example.petsapp.presentation.physicalActivity
 
 import androidx.lifecycle.ViewModel
 import com.example.petsapp.model.PhysicalActivity
