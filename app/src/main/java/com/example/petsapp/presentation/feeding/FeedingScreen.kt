@@ -66,8 +66,7 @@ fun FeedingScreen(
                     FeedingCard(
                         entry = entry,
                         onDelete = {
-                            viewModel.deleteFeedingEntry(entry.id) { success ->
-                            }
+                            viewModel.deleteFeedingEntry(entry.id) {}
                         }
                     )
                 }
