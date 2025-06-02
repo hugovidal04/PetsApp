@@ -1,5 +1,7 @@
 package com.example.petsapp.presentation.settings
 
+import android.Manifest
+import android.content.pm.PackageManager
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -26,8 +28,10 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
+import com.example.petsapp.MainActivity
 import com.example.petsapp.presentation.components.AppDrawer
 import com.example.petsapp.ui.theme.ColorTexto
 import com.example.petsapp.ui.theme.FondoPrincipal
@@ -52,7 +56,6 @@ fun SettingsScreen(
                 .background(FondoPrincipal)
                 .padding(16.dp)
         ) {
-
             Text("Configuración", color = ColorTexto)
             Spacer(modifier = Modifier.height(24.dp))
 
@@ -66,6 +69,18 @@ fun SettingsScreen(
                     checked = notificationsEnabled,
                     onCheckedChange = { enabled ->
                         viewModel.toggleNotifications(context, enabled)
+
+                        if (enabled) {
+                            val permiso = ContextCompat.checkSelfPermission(
+                                context,
+                                Manifest.permission.POST_NOTIFICATIONS
+                            )
+                            if (permiso == PackageManager.PERMISSION_GRANTED) {
+                                (context as? MainActivity)?.fetchEventsAndNotify()
+                            } else {
+                                (context as? MainActivity)?.requestNotificationPermission()
+                            }
+                        }
                     }
                 )
             }
