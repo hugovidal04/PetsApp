@@ -19,6 +19,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -53,7 +54,7 @@ fun DiaryScreen(
                 "Diario de la mascota",
                 color = ColorTexto,
                 fontSize = 22.sp,
-                modifier = Modifier.padding(bottom = 12.dp)
+                fontWeight = FontWeight.Bold
             )
 
             if (diaryEntries.isEmpty()) {
