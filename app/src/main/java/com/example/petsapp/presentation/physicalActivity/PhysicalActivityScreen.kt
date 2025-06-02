@@ -19,6 +19,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -48,7 +49,7 @@ fun PhysicalActivityScreen(
                 .verticalScroll(rememberScrollState()),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            Text("Actividad Física", fontSize = 22.sp, color = ColorTexto)
+            Text("Actividad Física", fontSize = 22.sp, color = ColorTexto, fontWeight = FontWeight.Bold)
 
             Spacer(Modifier.height(12.dp))
 
