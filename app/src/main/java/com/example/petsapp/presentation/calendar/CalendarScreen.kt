@@ -7,10 +7,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.AlertDialog
-import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
@@ -25,7 +22,6 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
-import com.example.petsapp.model.PetEvent
 import com.example.petsapp.presentation.components.AppDrawer
 import com.example.petsapp.ui.theme.ColorTexto
 import com.example.petsapp.ui.theme.FondoPrincipal
@@ -58,7 +54,12 @@ fun CalendarScreen(
                 .background(FondoPrincipal)
                 .padding(16.dp)
         ) {
-            Text("Calendario de Eventos", fontWeight = FontWeight.Bold, fontSize = 22.sp, color = ColorTexto)
+            Text(
+                "Calendario de Eventos",
+                fontWeight = FontWeight.Bold,
+                fontSize = 22.sp,
+                color = ColorTexto
+            )
 
             Spacer(Modifier.height(12.dp))
 
@@ -87,7 +88,11 @@ fun CalendarScreen(
                 Text("No hay eventos para esta fecha.", color = ColorTexto)
             } else {
                 filteredEvents.forEach { event ->
-                    Text("- Nombre de mascotas: ${event.petName} Título: ${event.title} Descripción: ${event.description} Evento: (${event.type})", fontSize = 16.sp, color = ColorTexto)
+                    Text(
+                        "- Nombre de mascotas: ${event.petName} Título: ${event.title} Descripción: ${event.description} Evento: (${event.type})",
+                        fontSize = 16.sp,
+                        color = ColorTexto
+                    )
                 }
             }
         }
@@ -104,62 +109,4 @@ fun CalendarScreen(
             }
         )
     }
-}
-
-@Composable
-fun CreateEventDialog(
-    date: LocalDate,
-    onDismiss: () -> Unit,
-    onSave: (PetEvent) -> Unit
-) {
-    var petName by remember { mutableStateOf("") }
-    var title by remember { mutableStateOf("") }
-    var description by remember { mutableStateOf("") }
-    var type by remember { mutableStateOf("vacuna") }
-
-    AlertDialog(
-        onDismissRequest = onDismiss,
-        title = { Text("Nuevo Evento") },
-        text = {
-            Column {
-                Text("Fecha: $date")
-                OutlinedTextField(
-                    value = petName,
-                    onValueChange = { petName = it },
-                    label = { Text("Nombre de la mascota") })
-                OutlinedTextField(
-                    value = title,
-                    onValueChange = { title = it },
-                    label = { Text("Título") })
-                OutlinedTextField(
-                    value = description,
-                    onValueChange = { description = it },
-                    label = { Text("Descripción") })
-                OutlinedTextField(
-                    value = type,
-                    onValueChange = { type = it },
-                    label = { Text("Tipo (vacuna, cita, tratamiento)") })
-            }
-        },
-        confirmButton = {
-            TextButton(onClick = {
-                onSave(
-                    PetEvent(
-                        date = date.toString(),
-                        petName = petName,
-                        title = title,
-                        description = description,
-                        type = type
-                    )
-                )
-            }) {
-                Text("Guardar")
-            }
-        },
-        dismissButton = {
-            TextButton(onClick = onDismiss) {
-                Text("Cancelar")
-            }
-        }
-    )
 }
