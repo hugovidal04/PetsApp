@@ -27,7 +27,9 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
@@ -54,9 +56,15 @@ fun SettingsScreen(
             modifier = Modifier
                 .fillMaxSize()
                 .background(FondoPrincipal)
-                .padding(16.dp)
+                .padding(16.dp),
+            horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            Text("Configuración", color = ColorTexto)
+            Text(
+                "Configuración",
+                color = ColorTexto,
+                fontWeight = FontWeight.Bold,
+                fontSize = 22.sp
+            )
             Spacer(modifier = Modifier.height(24.dp))
 
             Row(
