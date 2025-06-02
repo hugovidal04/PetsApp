@@ -33,7 +33,6 @@ import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.IconToggleButton
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.ModalDrawerSheet
 import androidx.compose.material3.ModalNavigationDrawer
 import androidx.compose.material3.NavigationDrawerItem
@@ -188,7 +187,6 @@ fun AppDrawer(
             ModalDrawerSheet(
                 modifier = Modifier
                     .width(280.dp),
-                //drawerContainerColor = FondoPrincipal
             ) {
                 Column(
                     modifier = Modifier
@@ -200,14 +198,12 @@ fun AppDrawer(
                     Text(
                         "Menú",
                         modifier = Modifier.padding(16.dp),
-                        style = MaterialTheme.typography.titleLarge
                     )
                     HorizontalDivider()
 
                     Text(
                         "Mascotas",
                         modifier = Modifier.padding(16.dp),
-                        style = MaterialTheme.typography.titleMedium
                     )
                     NavigationDrawerItem(
                         label = { Text("Mis mascotas") },
@@ -260,7 +256,6 @@ fun AppDrawer(
                     Text(
                         "Otros",
                         modifier = Modifier.padding(16.dp),
-                        style = MaterialTheme.typography.titleMedium
                     )
                     NavigationDrawerItem(
                         label = { Text("Mapa") },
