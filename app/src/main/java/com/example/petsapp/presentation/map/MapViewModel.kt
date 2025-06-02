@@ -21,7 +21,7 @@ class MapViewModel : ViewModel() {
         viewModelScope.launch {
             try {
                 val placesFound = withContext(Dispatchers.IO) {
-                    val radius = 10000 //No poner mucho
+                    val radius = 30000 //No poner mucho
                     val tag = when (queryType) {
                         "veterinaria" -> "amenity=veterinary"
                         "tienda de animales" -> "shop=pet"
