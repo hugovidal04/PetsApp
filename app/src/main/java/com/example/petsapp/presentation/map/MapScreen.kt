@@ -5,9 +5,24 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.location.Location
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.*
-import androidx.compose.material3.*
-import androidx.compose.runtime.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.Button
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
@@ -17,9 +32,11 @@ import androidx.core.content.ContextCompat
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import com.example.petsapp.presentation.components.AppDrawer
+import com.example.petsapp.ui.theme.Blanco
 import com.example.petsapp.ui.theme.ColorTexto
-import com.example.petsapp.ui.theme.FondoPrincipal
-import com.google.accompanist.permissions.*
+import com.google.accompanist.permissions.ExperimentalPermissionsApi
+import com.google.accompanist.permissions.isGranted
+import com.google.accompanist.permissions.rememberPermissionState
 import com.google.android.gms.location.LocationServices
 import org.osmdroid.config.Configuration
 import org.osmdroid.tileprovider.tilesource.TileSourceFactory
@@ -82,7 +99,10 @@ fun MapScreen(
                             position = location
                             setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM)
                             title = "Tu ubicación"
-                            icon = ContextCompat.getDrawable(context, org.osmdroid.library.R.drawable.person)
+                            icon = ContextCompat.getDrawable(
+                                context,
+                                org.osmdroid.library.R.drawable.person
+                            )
                         }
                         map.overlays.add(userMarker)
 
@@ -92,7 +112,7 @@ fun MapScreen(
                                 position = GeoPoint(place.lat, place.lon)
                                 setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM)
                                 title = when (selectedQuery) {
-                                    "veterinaria" ->  "Clínica"
+                                    "veterinaria" -> "Clínica"
                                     "tienda de animales" -> "Tienda"
                                     else -> ""
                                 }
@@ -109,14 +129,17 @@ fun MapScreen(
                 modifier = Modifier
                     .align(Alignment.TopCenter)
                     .padding(16.dp)
-                    .background(FondoPrincipal)
+                    .background(Blanco)
                     .padding(12.dp)
                     .fillMaxWidth(),
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 Text("Mapa de servicios cercanos", color = ColorTexto)
                 Spacer(Modifier.height(8.dp))
-                Row(horizontalArrangement = Arrangement.SpaceEvenly, modifier = Modifier.fillMaxWidth()) {
+                Row(
+                    horizontalArrangement = Arrangement.SpaceEvenly,
+                    modifier = Modifier.fillMaxWidth()
+                ) {
                     Button(onClick = { performSearch("veterinaria") }) {
                         Text("Clínicas")
                     }
