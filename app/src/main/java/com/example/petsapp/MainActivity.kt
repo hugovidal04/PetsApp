@@ -5,10 +5,10 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.content.SharedPreferences
 import android.content.pm.PackageManager
-import android.os.Build
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.material3.Surface
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
@@ -30,6 +30,14 @@ class MainActivity : ComponentActivity() {
     private val KEY_NOTIFICATIONS = "notifications_enabled"
     private val CHANNEL_ID = "evento_channel"
 
+    private val requestPermissionLauncher = registerForActivityResult(
+        ActivityResultContracts.RequestPermission()
+    ) { isGranted: Boolean ->
+        if (isGranted) {
+            fetchEventsAndNotify()
+        }
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -47,18 +55,22 @@ class MainActivity : ComponentActivity() {
 
     override fun onResume() {
         super.onResume()
-
         val prefs: SharedPreferences = getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
         val notificationsEnabled = prefs.getBoolean(KEY_NOTIFICATIONS, false)
-
         if (notificationsEnabled) {
-            fetchEventsAndNotify()
+            val permiso = ContextCompat.checkSelfPermission(
+                this,
+                Manifest.permission.POST_NOTIFICATIONS
+            )
+            if (permiso == PackageManager.PERMISSION_GRANTED) {
+                fetchEventsAndNotify()
+            }
         }
     }
 
     @SuppressLint("WrongConstant")
     private fun createNotificationChannel() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
             val name = "Canal de Eventos"
             val description = "Notificaciones para eventos del calendario"
             val importance = NotificationManagerCompat.IMPORTANCE_HIGH
@@ -71,7 +83,7 @@ class MainActivity : ComponentActivity() {
         }
     }
 
-    private fun fetchEventsAndNotify() {
+    fun fetchEventsAndNotify() {
         val userId = FirebaseAuth.getInstance().currentUser?.uid ?: return
         val db = FirebaseFirestore.getInstance()
 
@@ -86,35 +98,22 @@ class MainActivity : ComponentActivity() {
             .addOnSuccessListener { snapshot ->
                 snapshot.documents.forEach { doc ->
                     val dateString = doc.getString("date") ?: return@forEach
-
                     if (dateString < todayStr) return@forEach
 
                     val petName = doc.getString("petName") ?: "Desconocida"
                     val title = doc.getString("title") ?: "Sin título"
                     val type = doc.getString("type") ?: ""
                     val notifTitle = "$title ($type)"
-                    val notifText = "Mascota: $petName  •  Fecha: $dateString"
+                    val notifText = "Mascota: $petName  -  Fecha: $dateString"
 
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-                        val permiso = ContextCompat.checkSelfPermission(
-                            this,
-                            Manifest.permission.POST_NOTIFICATIONS
-                        )
-                        if (permiso == PackageManager.PERMISSION_GRANTED) {
-                            NotificationManagerCompat.from(this).notify(
-                                (0..9999).random(),
-                                NotificationCompat.Builder(this, CHANNEL_ID)
-                                    .setSmallIcon(android.R.drawable.ic_dialog_info)
-                                    .setContentTitle(notifTitle)
-                                    .setContentText(notifText)
-                                    .setStyle(NotificationCompat.BigTextStyle().bigText(notifText))
-                                    .setPriority(NotificationCompat.PRIORITY_HIGH)
-                                    .build()
-                            )
-                        }
-                    } else {
+                    val permiso = ContextCompat.checkSelfPermission(
+                        this,
+                        Manifest.permission.POST_NOTIFICATIONS
+                    )
+                    if (permiso == PackageManager.PERMISSION_GRANTED) {
+                        val notificationId = System.currentTimeMillis().toInt()
                         NotificationManagerCompat.from(this).notify(
-                            (0..9999).random(),
+                            notificationId,
                             NotificationCompat.Builder(this, CHANNEL_ID)
                                 .setSmallIcon(android.R.drawable.ic_dialog_info)
                                 .setContentTitle(notifTitle)
@@ -126,5 +125,9 @@ class MainActivity : ComponentActivity() {
                     }
                 }
             }
+    }
+
+    fun requestNotificationPermission() {
+        requestPermissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS)
     }
 }
