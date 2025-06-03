@@ -10,6 +10,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.graphics.Color
 import com.example.petsapp.model.Feeding
 import java.time.LocalDate
 
@@ -23,6 +24,7 @@ fun FeedingDialog(
     var time by remember { mutableStateOf("") }
     var food by remember { mutableStateOf("") }
     var notes by remember { mutableStateOf("") }
+    var errorMessage by remember { mutableStateOf("") }
 
     AlertDialog(
         onDismissRequest = onDismiss,
@@ -45,19 +47,26 @@ fun FeedingDialog(
                     value = notes,
                     onValueChange = { notes = it },
                     label = { Text("Notas (opcional)") })
+                if (errorMessage.isNotEmpty()) {
+                    Text(text = errorMessage, color = Color.Red)
+                }
             }
         },
         confirmButton = {
             TextButton(onClick = {
-                onSave(
-                    Feeding(
-                        petName = petName,
-                        date = date,
-                        time = time,
-                        food = food,
-                        notes = notes
+                if (petName.isBlank() || time.isBlank() || food.isBlank()) {
+                    errorMessage = "Completa todos los campos excepto las notas"
+                } else {
+                    onSave(
+                        Feeding(
+                            petName = petName,
+                            date = date,
+                            time = time,
+                            food = food,
+                            notes = notes
+                        )
                     )
-                )
+                }
             }) {
                 Text("Guardar")
             }
