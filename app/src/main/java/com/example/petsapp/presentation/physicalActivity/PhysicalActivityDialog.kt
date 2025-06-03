@@ -10,6 +10,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.graphics.Color
 import com.example.petsapp.model.PhysicalActivity
 import java.time.LocalDate
 
@@ -23,6 +24,7 @@ fun PhysicalActivityDialog(
     var duration by remember { mutableStateOf("") }
     var activityType by remember { mutableStateOf("") }
     var notes by remember { mutableStateOf("") }
+    var errorMessage by remember { mutableStateOf("") }
 
     AlertDialog(
         onDismissRequest = onDismiss,
@@ -45,11 +47,16 @@ fun PhysicalActivityDialog(
                     value = notes,
                     onValueChange = { notes = it },
                     label = { Text("Notas (opcional)") })
+                if (errorMessage.isNotEmpty()) {
+                    Text(text = errorMessage, color = Color.Red)
+                }
             }
         },
         confirmButton = {
             TextButton(onClick = {
-                if (petName.isNotBlank() && duration.isNotBlank() && activityType.isNotBlank()) {
+                if (petName.isBlank() || duration.isBlank() || activityType.isBlank()) {
+                    errorMessage = "Completa todos los campos"
+                } else {
                     onSave(
                         PhysicalActivity(
                             petName = petName,
