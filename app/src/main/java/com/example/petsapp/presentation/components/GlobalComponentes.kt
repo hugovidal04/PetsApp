@@ -154,6 +154,7 @@ fun ButtonComponent(
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
     text: String,
+    textColor: Color = ColorTexto,
     backgroundColor: Color
 ) {
     Button(
@@ -162,7 +163,8 @@ fun ButtonComponent(
             .height(48.dp),
         colors = ButtonDefaults.buttonColors(
             containerColor = backgroundColor,
-            disabledContentColor = Color.White
+            disabledContentColor = Color.White,
+            contentColor = ColorTexto
         )
     ) {
         Text(text = text)
