@@ -29,7 +29,7 @@ import com.example.petsapp.ui.theme.ColorTexto
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun BarraDeBusqueda(
+fun SearchBarComp(
     searchQuery: String,
     onValueChange: (String) -> Unit,
     modifier: Modifier = Modifier

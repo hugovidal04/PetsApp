@@ -60,7 +60,7 @@ fun AdminScreen(
             fontWeight = FontWeight.Bold
         )
 
-        BarraDeBusqueda(
+        SearchBarComp(
             searchQuery = searchQuery,
             onValueChange = { searchQuery = it },
             modifier = Modifier

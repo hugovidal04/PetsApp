@@ -19,7 +19,6 @@ class PhysicalActivityViewModel : ViewModel() {
 
         db.collection("users").document(userId)
             .collection("physical_activity")
-            .orderBy("date")
             .addSnapshotListener { snapshot, _ ->
                 _activities.value = snapshot?.documents?.mapNotNull { doc ->
                     PhysicalActivity(

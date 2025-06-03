@@ -6,5 +6,5 @@ data class PetEvent(
     val petName: String = "",
     val title: String = "",
     val description: String = "",
-    val type: String = "" //vacuna, cita, tratamiento
+    val type: String = ""
 )

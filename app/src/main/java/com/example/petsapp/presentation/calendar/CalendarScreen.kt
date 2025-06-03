@@ -105,7 +105,7 @@ fun CalendarScreen(
             date = selectedDate!!,
             onDismiss = { showDialog = false },
             onSave = { event ->
-                viewModel.addEvent(event) { success ->
+                viewModel.addEvent(event) {
                     showDialog = false
                 }
             }

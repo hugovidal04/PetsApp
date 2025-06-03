@@ -43,9 +43,7 @@ fun PhysicalActivityCard(
             Text("Fecha: ${entry.date}")
             Text("Duración: ${entry.duration}")
             Text("Tipo: ${entry.activityType}")
-            if (entry.notes.isNotBlank()) {
-                Text("Notas: ${entry.notes}")
-            }
+            Text("Notas: ${entry.notes}")
 
             Spacer(modifier = Modifier.height(8.dp))
 

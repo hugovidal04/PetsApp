@@ -5,6 +5,6 @@ data class PhysicalActivity(
     val petName: String = "",
     val date: String = "",
     val duration: String = "",
-    val activityType: String = "", //Paseo, jugar ...
+    val activityType: String = "",
     val notes: String = ""
 )

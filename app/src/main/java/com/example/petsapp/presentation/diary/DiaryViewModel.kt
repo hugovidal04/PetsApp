@@ -60,5 +60,4 @@ class DiaryViewModel : ViewModel() {
             .addOnSuccessListener { onResult(true) }
             .addOnFailureListener { onResult(false) }
     }
-
 }

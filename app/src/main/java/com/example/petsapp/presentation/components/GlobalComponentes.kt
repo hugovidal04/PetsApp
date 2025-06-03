@@ -89,7 +89,7 @@ fun NormalText(
 }
 
 @Composable
-fun ListaImagenes(
+fun ImageList(
     imagenes: List<Painter>,
     size: Dp = 200.dp
 ) {
