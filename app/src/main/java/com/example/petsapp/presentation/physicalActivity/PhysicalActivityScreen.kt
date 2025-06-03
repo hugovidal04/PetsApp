@@ -53,9 +53,6 @@ fun PhysicalActivityScreen(
 
             Spacer(Modifier.height(12.dp))
 
-            if (activities.isEmpty()) {
-                Text("No hay registros.")
-            } else {
                 activities.forEach { activity ->
                     PhysicalActivityCard(
                         entry = activity,
@@ -64,7 +61,6 @@ fun PhysicalActivityScreen(
                         }
                     )
                 }
-            }
 
             Spacer(Modifier.height(16.dp))
             Button(onClick = { showDialog = true }) {
