@@ -10,6 +10,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.graphics.Color
 import com.example.petsapp.model.DiaryEntry
 import java.time.LocalDate
 
@@ -21,6 +22,7 @@ fun DiaryDialog(
     var petName by remember { mutableStateOf("") }
     var title by remember { mutableStateOf("") }
     var content by remember { mutableStateOf("") }
+    var errorMessage by remember { mutableStateOf("") }
 
     AlertDialog(
         onDismissRequest = onDismiss,
@@ -39,20 +41,26 @@ fun DiaryDialog(
                     value = content,
                     onValueChange = { content = it },
                     label = { Text("Contenido") })
+                if (errorMessage.isNotEmpty()) {
+                    Text(text = errorMessage, color = Color.Red)
+                }
             }
         },
         confirmButton = {
             TextButton(onClick = {
                 val currentDate = LocalDate.now().toString()
-
-                onSave(
-                    DiaryEntry(
-                        petName = petName,
-                        date = currentDate,
-                        title = title,
-                        content = content
+                if (petName.isBlank() || title.isBlank() || content.isBlank()) {
+                    errorMessage = "Completa todos los campos"
+                } else {
+                    onSave(
+                        DiaryEntry(
+                            petName = petName,
+                            date = currentDate,
+                            title = title,
+                            content = content
+                        )
                     )
-                )
+                }
             }) {
                 Text("Guardar")
             }
