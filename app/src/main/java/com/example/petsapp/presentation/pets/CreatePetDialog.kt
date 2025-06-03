@@ -71,8 +71,8 @@ fun CreatePetDialog(
         },
         confirmButton = {
             TextButton(onClick = {
-                if (name.isBlank() || species.isBlank()) {
-                    errorMessage = "Completa al menos nombre y especie"
+                if (name.isBlank() || species.isBlank() || breed.isBlank() || birthDate.isBlank() || gender.isBlank()) {
+                    errorMessage = "Completa todos los campos"
                 } else {
                     val pet = Pet(
                         name = name,
