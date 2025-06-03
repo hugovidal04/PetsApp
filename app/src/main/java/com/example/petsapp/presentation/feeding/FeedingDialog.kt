@@ -11,6 +11,8 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.unit.sp
 import com.example.petsapp.model.Feeding
 import java.time.LocalDate
 
@@ -34,19 +36,43 @@ fun FeedingDialog(
                 OutlinedTextField(
                     value = petName,
                     onValueChange = { petName = it },
-                    label = { Text("Nombre de la mascota") })
+                    label = {
+                        Text(
+                            "Nombre de la mascota",
+                            style = TextStyle(fontSize = 16.sp)
+                        )
+                    },
+                )
                 OutlinedTextField(
                     value = time,
                     onValueChange = { time = it },
-                    label = { Text("Hora (ej. 08:00)") })
+                    label = {
+                        Text(
+                            "Hora",
+                            style = TextStyle(fontSize = 16.sp)
+                        )
+                    },
+                )
                 OutlinedTextField(
                     value = food,
                     onValueChange = { food = it },
-                    label = { Text("Comida") })
+                    label = {
+                        Text(
+                            "Comida",
+                            style = TextStyle(fontSize = 16.sp)
+                        )
+                    },
+                )
                 OutlinedTextField(
                     value = notes,
                     onValueChange = { notes = it },
-                    label = { Text("Notas (opcional)") })
+                    label = {
+                        Text(
+                            "Notas (opcional)",
+                            style = TextStyle(fontSize = 16.sp)
+                        )
+                    },
+                )
                 if (errorMessage.isNotEmpty()) {
                     Text(text = errorMessage, color = Color.Red)
                 }

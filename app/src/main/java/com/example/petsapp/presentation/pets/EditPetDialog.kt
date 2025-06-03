@@ -2,7 +2,6 @@ package com.example.petsapp.presentation.pets
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
@@ -12,9 +11,10 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
-import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.example.petsapp.model.Pet
 
 @Composable
@@ -38,32 +38,52 @@ fun EditPetDialog(
                 OutlinedTextField(
                     value = name,
                     onValueChange = { name = it },
-                    label = { Text("Nombre") },
-                    modifier = Modifier.fillMaxWidth()
+                    label = {
+                        Text(
+                            "Nombre",
+                            style = TextStyle(fontSize = 16.sp)
+                        )
+                    },
                 )
                 OutlinedTextField(
                     value = species,
                     onValueChange = { species = it },
-                    label = { Text("Especie") },
-                    modifier = Modifier.fillMaxWidth()
+                    label = {
+                        Text(
+                            "Especie",
+                            style = TextStyle(fontSize = 16.sp)
+                        )
+                    },
                 )
                 OutlinedTextField(
                     value = breed,
                     onValueChange = { breed = it },
-                    label = { Text("Raza") },
-                    modifier = Modifier.fillMaxWidth()
+                    label = {
+                        Text(
+                            "Raza",
+                            style = TextStyle(fontSize = 16.sp)
+                        )
+                    },
                 )
                 OutlinedTextField(
                     value = birthDate,
                     onValueChange = { birthDate = it },
-                    label = { Text("Fecha de Nacimiento") },
-                    modifier = Modifier.fillMaxWidth()
+                    label = {
+                        Text(
+                            "Fecha de nacimiento",
+                            style = TextStyle(fontSize = 16.sp)
+                        )
+                    },
                 )
                 OutlinedTextField(
                     value = gender,
                     onValueChange = { gender = it },
-                    label = { Text("Sexo") },
-                    modifier = Modifier.fillMaxWidth()
+                    label = {
+                        Text(
+                            "Sexo",
+                            style = TextStyle(fontSize = 16.sp)
+                        )
+                    },
                 )
                 if (errorMessage.isNotEmpty()) {
                     Text(text = errorMessage, color = Color.Red)
