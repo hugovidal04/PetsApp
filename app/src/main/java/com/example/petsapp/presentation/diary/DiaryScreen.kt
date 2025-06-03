@@ -57,9 +57,6 @@ fun DiaryScreen(
                 fontWeight = FontWeight.Bold
             )
 
-            if (diaryEntries.isEmpty()) {
-                Text("No hay entradas aún.")
-            } else {
                 diaryEntries.forEach { entry ->
                     DiaryCard(
                         entry = entry,
@@ -68,7 +65,6 @@ fun DiaryScreen(
                         }
                     )
                 }
-            }
 
             Spacer(modifier = Modifier.height(12.dp))
 

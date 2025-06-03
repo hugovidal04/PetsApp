@@ -59,9 +59,6 @@ fun FeedingScreen(
 
             Spacer(Modifier.height(12.dp))
 
-            if (feedingList.isEmpty()) {
-                Text("No hay registros.")
-            } else {
                 feedingList.forEach { entry ->
                     FeedingCard(
                         entry = entry,
@@ -70,8 +67,6 @@ fun FeedingScreen(
                         }
                     )
                 }
-
-            }
 
             Spacer(Modifier.height(12.dp))
 
