@@ -11,6 +11,8 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.unit.sp
 import com.example.petsapp.model.PhysicalActivity
 import java.time.LocalDate
 
@@ -34,19 +36,43 @@ fun PhysicalActivityDialog(
                 OutlinedTextField(
                     value = petName,
                     onValueChange = { petName = it },
-                    label = { Text("Nombre de la mascota") })
+                    label = {
+                        Text(
+                            "Nombre de la mascota",
+                            style = TextStyle(fontSize = 16.sp)
+                        )
+                    },
+                )
                 OutlinedTextField(
                     value = duration,
                     onValueChange = { duration = it },
-                    label = { Text("Duración") })
+                    label = {
+                        Text(
+                            "Duración",
+                            style = TextStyle(fontSize = 16.sp)
+                        )
+                    },
+                )
                 OutlinedTextField(
                     value = activityType,
                     onValueChange = { activityType = it },
-                    label = { Text("Tipo de actividad") })
+                    label = {
+                        Text(
+                            "Tipo de actividad",
+                            style = TextStyle(fontSize = 16.sp)
+                        )
+                    },
+                )
                 OutlinedTextField(
                     value = notes,
                     onValueChange = { notes = it },
-                    label = { Text("Notas (opcional)") })
+                    label = {
+                        Text(
+                            "Notas opcional",
+                            style = TextStyle(fontSize = 16.sp)
+                        )
+                    },
+                )
                 if (errorMessage.isNotEmpty()) {
                     Text(text = errorMessage, color = Color.Red)
                 }

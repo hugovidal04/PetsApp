@@ -11,6 +11,8 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.unit.sp
 import com.example.petsapp.model.DiaryEntry
 import java.time.LocalDate
 
@@ -32,15 +34,33 @@ fun DiaryDialog(
                 OutlinedTextField(
                     value = petName,
                     onValueChange = { petName = it },
-                    label = { Text("Mascota") })
+                    label = {
+                        Text(
+                            "Mascota",
+                            style = TextStyle(fontSize = 16.sp)
+                        )
+                    },
+                )
                 OutlinedTextField(
                     value = title,
                     onValueChange = { title = it },
-                    label = { Text("Título") })
+                    label = {
+                        Text(
+                            "Título",
+                            style = TextStyle(fontSize = 16.sp)
+                        )
+                    },
+                )
                 OutlinedTextField(
                     value = content,
                     onValueChange = { content = it },
-                    label = { Text("Contenido") })
+                    label = {
+                        Text(
+                            "Contenido",
+                            style = TextStyle(fontSize = 16.sp)
+                        )
+                    },
+                )
                 if (errorMessage.isNotEmpty()) {
                     Text(text = errorMessage, color = Color.Red)
                 }
