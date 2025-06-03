@@ -22,18 +22,15 @@ class PetsViewModel : ViewModel() {
             .addSnapshotListener { snapshot, error ->
                 if (error != null) return@addSnapshotListener
                 val petList = snapshot?.documents?.mapNotNull { doc ->
-                    try {
-                        Pet(
-                            id = doc.id,
-                            name = doc.getString("name") ?: "",
-                            species = doc.getString("species") ?: "",
-                            breed = doc.getString("breed") ?: "",
-                            birthDate = doc.getString("birthDate") ?: "",
-                            gender = doc.getString("gender") ?: "",
-                        )
-                    } catch (e: Exception) {
-                        null
-                    }
+                    Pet(
+                        id = doc.id,
+                        name = doc.getString("name") ?: "",
+                        species = doc.getString("species") ?: "",
+                        breed = doc.getString("breed") ?: "",
+                        birthDate = doc.getString("birthDate") ?: "",
+                        gender = doc.getString("gender") ?: "",
+                    )
+
                 } ?: emptyList()
                 _pets.value = petList
             }

@@ -92,8 +92,6 @@ fun PetsScreen(
                     text = "Añadir mascota",
                     backgroundColor = PrincipalAdmin
                 )
-
-
             }
 
             if (errorMessage.isNotEmpty()) {

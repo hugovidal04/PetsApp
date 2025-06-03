@@ -35,4 +35,3 @@ fun Arrow(onNavigateToLogin: () -> Unit) {
         )
     }
 }
-

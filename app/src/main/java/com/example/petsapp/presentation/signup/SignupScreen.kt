@@ -33,7 +33,7 @@ import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.petsapp.R
 import com.example.petsapp.presentation.components.ButtonComponent
-import com.example.petsapp.presentation.components.ListaImagenes
+import com.example.petsapp.presentation.components.ImageList
 import com.example.petsapp.presentation.components.NormalText
 import com.example.petsapp.presentation.components.PasswordField
 import com.example.petsapp.presentation.components.TextField
@@ -67,7 +67,7 @@ fun SingupScreen(
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Spacer(modifier = Modifier.height(50.dp))
-            ListaImagenes(
+            ImageList(
                 listOf(
                     (painterResource(id = R.drawable.perro)),
                     (painterResource(id = R.drawable.huella)),

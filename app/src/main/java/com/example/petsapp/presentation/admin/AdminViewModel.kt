@@ -24,7 +24,7 @@ class AdminViewModel : ViewModel() {
                     Log.d(
                         "ErrorEsperado",
                         "Error temporal: ${it.message}"
-                    ) //Capturamos el error temporal
+                    ) //Captura el error temporal
                     return@addSnapshotListener
                 }
 
