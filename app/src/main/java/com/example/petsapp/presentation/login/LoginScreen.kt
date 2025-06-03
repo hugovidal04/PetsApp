@@ -39,6 +39,7 @@ import com.example.petsapp.presentation.components.NormalText
 import com.example.petsapp.presentation.components.PasswordField
 import com.example.petsapp.presentation.components.TextField
 import com.example.petsapp.ui.theme.Blanco
+import com.example.petsapp.ui.theme.ColorTexto
 import com.example.petsapp.ui.theme.FondoPrincipal
 import com.example.petsapp.ui.theme.Principal
 
