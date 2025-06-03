@@ -74,14 +74,15 @@ fun CreatePetDialog(
                 if (name.isBlank() || species.isBlank() || breed.isBlank() || birthDate.isBlank() || gender.isBlank()) {
                     errorMessage = "Completa todos los campos"
                 } else {
-                    val pet = Pet(
-                        name = name,
-                        species = species,
-                        breed = breed,
-                        birthDate = birthDate,
-                        gender = gender
+                    onSavePet(
+                        Pet(
+                            name = name,
+                            species = species,
+                            breed = breed,
+                            birthDate = birthDate,
+                            gender = gender
+                        )
                     )
-                    onSavePet(pet)
                 }
             }) {
                 Text("Crear")
