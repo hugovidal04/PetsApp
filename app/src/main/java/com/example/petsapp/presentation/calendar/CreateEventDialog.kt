@@ -47,7 +47,7 @@ fun CreateEventDialog(
                 OutlinedTextField(
                     value = type,
                     onValueChange = { type = it },
-                    label = { Text("Tipo (vacuna, cita, tratamiento)") })
+                    label = { Text("Tipo (vacuna, cita, tratamiento, ...)") })
                 if (errorMessage.isNotEmpty()) {
                     Text(
                         text = errorMessage,
