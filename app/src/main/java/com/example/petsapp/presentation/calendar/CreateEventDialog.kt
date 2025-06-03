@@ -10,6 +10,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.graphics.Color
 import com.example.petsapp.model.PetEvent
 import java.time.LocalDate
 
@@ -23,6 +24,7 @@ fun CreateEventDialog(
     var title by remember { mutableStateOf("") }
     var description by remember { mutableStateOf("") }
     var type by remember { mutableStateOf("") }
+    var errorMessage by remember { mutableStateOf("") }
 
     AlertDialog(
         onDismissRequest = onDismiss,
@@ -46,19 +48,29 @@ fun CreateEventDialog(
                     value = type,
                     onValueChange = { type = it },
                     label = { Text("Tipo (vacuna, cita, tratamiento)") })
+                if (errorMessage.isNotEmpty()) {
+                    Text(
+                        text = errorMessage,
+                        color = Color.Red,
+                    )
+                }
             }
         },
         confirmButton = {
             TextButton(onClick = {
-                onSave(
-                    PetEvent(
-                        date = date.toString(),
-                        petName = petName,
-                        title = title,
-                        description = description,
-                        type = type
+                if (petName.isBlank() || title.isBlank() || description.isBlank() || type.isBlank()) {
+                    errorMessage = "Completa todos los campos"
+                } else {
+                    onSave(
+                        PetEvent(
+                            date = date.toString(),
+                            petName = petName,
+                            title = title,
+                            description = description,
+                            type = type
+                        )
                     )
-                )
+                }
             }) {
                 Text("Guardar")
             }
